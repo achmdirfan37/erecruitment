@@ -145,7 +145,8 @@ class PengalamanKerjaEdit extends Component {
                                         onChange={this.handleTanggalMulaiUpdateChange}
                                         value={this.state.pkj_tanggal_mulai}
                                         className="form-control" 
-                                        placeholder="Enter Tanggal Mulai"/>
+                                        placeholder="Enter Tanggal Mulai"
+                                        data-date-format="dd/mm/yyyy"/>
                                     </div>
                                     <div className="form-group">
                                         <input type="date"
@@ -154,7 +155,8 @@ class PengalamanKerjaEdit extends Component {
                                         onChange={this.handleTanggalSelesaiUpdateChange}
                                         value={this.state.pkj_tanggal_selesai}
                                         className="form-control"
-                                        placeholder="Enter Tanggal Selesai"/>
+                                        placeholder="Enter Tanggal Selesai"
+                                        data-date-format="dd/mm/yyyy"/>
                                     </div>
                                     <div className="form-group">
                                         <input type="text" 

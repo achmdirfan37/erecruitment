@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PelamarEdit from "./components/PelamarEdit";
 import PelamarList from "./components/PelamarList";
 import PelamarCreate from "./components/PelamarCreate";
+import PelamarRegistrasi from "./components/PelamarRegistrasi";
 import BidangPekerjaanEdit from "./components/BidangPekerjaanEdit";
 import BidangPekerjaanList from "./components/BidangPekerjaanList";
 import BidangPekerjaanCreate from "./components/BidangPekerjaanCreate";
@@ -30,6 +31,9 @@ import RiwayatPendidikanCreate from "./components/RiwayatPendidikanCreate";
 import LowonganEdit from "./components/LowonganEdit";
 import LowonganList from "./components/LowonganList";
 import LowonganCreate from "./components/LowonganCreate";
+import RoleEdit from "./components/RoleEdit";
+import RoleList from "./components/RoleList";
+import RoleCreate from "./components/RoleCreate";
 
 class App extends Component {
   constructor(props){
@@ -44,6 +48,7 @@ class App extends Component {
       ms_pengalaman_kerja: {},
       ms_riwayat_pendidikan: {},
       ms_lowongan: {},
+      ms_role: {}
     }
   }
 
@@ -99,12 +104,18 @@ class App extends Component {
                 <Link to={"/LowonganList"} className="nav-link">
                   Kelola Lowongan
                 </Link>
+                <Link to={"/RoleList"} className="nav-link">
+                  Kelola Role
+                </Link>
               </Navbar.Brand>
 
               <Nav className="justify-content-end">
                 <Nav>
                   <Link to={"/PelamarCreate"} className="nav-link">
                     Tambah Pelamar
+                  </Link>
+                  <Link to={"/PelamarRegistrasi"} className="nav-link">
+                    Registrasi Pelamar
                   </Link>
                   <Link to={"/BidangPekerjaanCreate"} className="nav-link">
                     Tambah Bidang Pekerjaan
@@ -124,6 +135,9 @@ class App extends Component {
                   <Link to={"/LowonganCreate"} className="nav-link">
                     Tambah Lowongan
                   </Link>
+                  <Link to={"/RoleCreate"} className="nav-link">
+                    Tambah Role
+                  </Link>
                 </Nav>
               </Nav>
 
@@ -139,6 +153,7 @@ class App extends Component {
                   <Route exact path='/' component={PelamarList} />
                   <Route path='/PelamarList' component={PelamarList} />
                   <Route path='/PelamarCreate' component={PelamarCreate} />
+                  <Route path='/PelamarRegistrasi' component={PelamarRegistrasi} />
                   <Route path="/:id/PelamarEdit" component={PelamarEdit}/>
                   <Route path='/BidangPekerjaanList' component={BidangPekerjaanList} />
                   <Route path='/BidangPekerjaanCreate' component={BidangPekerjaanCreate} />
@@ -158,6 +173,9 @@ class App extends Component {
                   <Route path='/LowonganList' component={LowonganList} />
                   <Route path='/LowonganCreate' component={LowonganCreate} />
                   <Route path="/:id/LowonganEdit" component={LowonganEdit}/>
+                  <Route path='/RoleList' component={RoleList} />
+                  <Route path='/RoleCreate' component={RoleCreate} />
+                  <Route path="/:id/RoleEdit" component={RoleEdit}/>
                 </Switch>
                 </div>
             </Col>

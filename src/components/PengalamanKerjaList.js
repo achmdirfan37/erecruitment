@@ -112,7 +112,8 @@ class PengalamanKerjaList extends React.Component {
                                   <td>{ms_pengalaman_kerjas.pkj_lokasi}</td>
                                   <td>{ms_pengalaman_kerjas.pkj_industri}</td>
                                       <td>
-                                          <Link to={`/${ms_pengalaman_kerjas.id}/PengalamanKerjaEdit`} className="btn btn-warning btn-sm mr-2">Update</Link>
+                                          <Link to={`/${ms_pengalaman_kerjas.id}/PengalamanKerjaEdit`} 
+                                          className="btn btn-warning btn-sm mr-2">Update</Link>
                                           <Link href="#" className="btn btn-warning btn-sm mr-2" onClick={this.deleteRiwayatPendidikan.bind(this, ms_pengalaman_kerjas.id)}>Delete</Link>
                                       </td>
                                   </tr>
