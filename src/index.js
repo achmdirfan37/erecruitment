@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import './index.css';
 import App from './App';
+import PelamarLogin from './components/PelamarLogin';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

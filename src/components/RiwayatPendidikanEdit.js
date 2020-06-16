@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import axios from 'axios'
+import axios from 'axios';
+import { Alert } from 'react-alert';
 //import PelamarList from './pelamar-listing.component';
 
-export default class PengalamanKerjaCreate extends Component {
+export default class RiwayatPendidikanEdit extends Component {
     constructor(props){
         super(props);
         this.state = {
             rpd_nama_lembaga_pendidikan : '',
-            rpd_tanggal_lulus : '',
+            rpd_tahun_lulus : '',
             rpd_kualifikasi : '',
             rpd_lokasi : '',
             rpd_jurusan : '',
             rpd_keterangan_prestasi : ''
         }
         this.handleNamaLembagaPendidikanUpdateChange = this.handleNamaLembagaPendidikanUpdateChange.bind(this);
-        this.handleTanggalLulusUpdateChange = this.handleTanggalLulusUpdateChange.bind(this);
+        this.handleTahunLulusUpdateChange = this.handleTahunLulusUpdateChange.bind(this);
         this.handleKualifikasiUpdateChange = this.handleKualifikasiUpdateChange.bind(this);
         this.handleLokasiUpdateChange = this.handleLokasiUpdateChange.bind(this);
         this.handleJurusanUpdateChange = this.handleJurusanUpdateChange.bind(this);
@@ -24,11 +25,11 @@ export default class PengalamanKerjaCreate extends Component {
 
     componentDidMount(){
         const id = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:8000/api/ms_riwayat_pendidikan/${id}/edit`)
+        axios.get(`http://127.0.0.1:8000/api/ms_riwayat_pendidikan/edit/${id}`)
         .then(response => {
             this.setState({
                 rpd_nama_lembaga_pendidikan : response.data.rpd_nama_lembaga_pendidikan,
-                rpd_tanggal_lulus : response.data.rpd_tanggal_lulus,
+                rpd_tahun_lulus : response.data.rpd_tahun_lulus,
                 rpd_kualifikasi : response.data.rpd_kualifikasi,
                 rpd_lokasi : response.data.rpd_lokasi,
                 rpd_jurusan : response.data.rpd_jurusan,
@@ -43,9 +44,9 @@ export default class PengalamanKerjaCreate extends Component {
         })
     }
 
-    handleTanggalLulusUpdateChange(event){
+    handleTahunLulusUpdateChange(event){
         this.setState({
-            rpd_tanggal_lulus : event.target.value
+            rpd_tahun_lulus : event.target.value
         })
     }
 
@@ -74,10 +75,12 @@ export default class PengalamanKerjaCreate extends Component {
     }
 
     handleFormSubmit(event){
+        alert("Your Data is Updated!");
         event.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/ms_riwayat_pendidikan/create',{
+        const id = this.props.match.params.id;
+        axios.put(`http://127.0.0.1:8000/api/ms_riwayat_pendidikan/update/${id}`,{
             rpd_nama_lembaga_pendidikan : this.state.rpd_nama_lembaga_pendidikan,
-            rpd_tanggal_lulus : this.state.rpd_tanggal_lulus,
+            rpd_tahun_lulus : this.state.rpd_tahun_lulus,
             rpd_kualifikasi : this.state.rpd_kualifikasi,
             rpd_lokasi : this.state.rpd_lokasi,
             rpd_jurusan : this.state.rpd_jurusan,
@@ -85,7 +88,7 @@ export default class PengalamanKerjaCreate extends Component {
         }).then(response => {
             this.setState({
                 rpd_nama_lembaga_pendidikan : '',
-                rpd_tanggal_lulus : '',
+                rpd_tahun_lulus : '',
                 rpd_kualifikasi : '',
                 rpd_lokasi : '',
                 rpd_jurusan : '',
@@ -97,75 +100,101 @@ export default class PengalamanKerjaCreate extends Component {
 
     render(){
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Tambah Riwayat Pendidikan</div>
+            <div className="content-wrapper">
+                {/* Content Header (Page header) */}
+                <section className="content-header">
+                    <h1>
+                    Educational Background Data
+                    </h1>
+                    <ol className="breadcrumb">
+                        <li className="active">Educational Background Data</li>
+                    </ol>
+                </section>
 
-                            <div className="card-body">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        name="rpd_nama_lembaga_pendidikan"
-                                        onChange={this.handleNamaLembagaPendidikanUpdateChange}
-                                        value={this.state.rpd_nama_lembaga_pendidikan}
-                                        className="form-control" 
-                                        placeholder="Enter Nama Lembaga Pendidikan"/>
+                <section className="content" >
+                    <div className="row">
+                        {/* left column */}
+                        <div className="col-md-12">
+                            {/* general form elements */}
+                            <div className="box box-primary">
+                                <form role="form" onSubmit={this.handleFormSubmit}>
+                                    <div className="box-body">
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Name of Educational Institution</label>
+                                            <input type="text"
+                                                required
+                                                name="rpd_nama_lembaga_pendidikan"
+                                                onChange={this.handleNamaLembagaPendidikanUpdateChange}
+                                                value={this.state.rpd_nama_lembaga_pendidikan}
+                                                className="form-control"
+                                                placeholder="Enter Name of Educational Institution" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Graduation Year</label>
+                                            <input type="text"
+                                                required
+                                                name="rpd_tahun_lulus"
+                                                onChange={this.handleTahunLulusUpdateChange}
+                                                value={this.state.rpd_tahun_lulus}
+                                                className="form-control"
+                                                placeholder="Enter Graduation Year" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Educational Stage</label>
+                                            <select className="form-control select2" value={this.state.rpd_kualifikasi}
+                                                onChange={(event) => this.setState({ rpd_kualifikasi: event.target.value })}>
+                                                <option value="SMA/K">SMA/K</option>
+                                                <option value="D1">D1</option>
+                                                <option value="D3">D3</option>
+                                                <option value="D4">D4</option>
+                                                <option value="S1">S1</option>
+                                                <option value="S2">S2</option>
+                                                <option value="S3">S3</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Location</label>
+                                            <input type="text"
+                                                required
+                                                name="rpd_lokasi"
+                                                onChange={this.handleLokasiUpdateChange}
+                                                value={this.state.rpd_lokasi}
+                                                className="form-control"
+                                                placeholder="Enter Location" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Majors</label>
+                                            <input type="text"
+                                                required
+                                                name="rpd_jurusan"
+                                                onChange={this.handleJurusanUpdateChange}
+                                                value={this.state.rpd_jurusan}
+                                                className="form-control"
+                                                placeholder="Enter Majors" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Description of Achievement</label>
+                                            <textarea type="text"
+                                                required
+                                                name="rpd_keterangan_prestasi"
+                                                onChange={this.handleKeteranganPrestasiUpdateChange}
+                                                value={this.state.rpd_keterangan_prestasi}
+                                                className="form-control"
+                                                placeholder="Enter Description of Achievement"
+                                                rows={5}
+                                                cols={5} />
+                                        </div>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="date" 
-                                        required
-                                        name="rpd_tanggal_lulus"
-                                        onChange={this.handleTanggalLulusUpdateChange}
-                                        value={this.state.rpd_tanggal_lulus}
-                                        className="form-control" 
-                                        placeholder="Enter Tanggal Lulus"/>
+                                    {/* /.box-body */}
+                                    <div className="box-footer">
+                                        <button type="submit" className="btn btn-primary">Update Data</button>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="date"
-                                        required
-                                        name="rpd_kualifikasi"
-                                        onChange={this.handleKualifikasiUpdateChange}
-                                        value={this.state.rpd_kualifikasi}
-                                        className="form-control"
-                                        placeholder="Enter Kualifikasi"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="text" 
-                                        required
-                                        name="rpd_lokasi"
-                                        onChange={this.handleLokasiUpdateChange}
-                                        value={this.state.rpd_lokasi}
-                                        className="form-control"
-                                        placeholder="Enter Lokasi"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        name="rpd_jurusan"
-                                        onChange={this.handleJurusanUpdateChange}
-                                        value={this.state.rpd_jurusan}
-                                        className="form-control"
-                                        placeholder="Enter Jurusan"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="textarea"
-                                        required
-                                        name="rpd_keterangan_prestasi"
-                                        onChange={this.handleKeteranganPrestasiUpdateChange}
-                                        value={this.state.rpd_keterangan_prestasi}
-                                        className="form-control"
-                                        placeholder="Enter Keterangan Prestasi"/>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary">Simpan Data Riwayat Pendidikan</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </div >
         );
     }
 }

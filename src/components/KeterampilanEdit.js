@@ -1,71 +1,90 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Alert } from 'react-alert';
 
 class KeterampilanEdit extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            ket_nama : ''
+            ket_nama: ''
         }
         this.handleNamaUpdateChange = this.handleNamaUpdateChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const id = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:8000/api/ms_keterampilan/${id}/edit`)
-        .then(response => {
-            this.setState({
-                ket_nama : response.data.ket_nama
-            })
-        }).catch(err => console.log(err));
+        axios.get(`http://127.0.0.1:8000/api/ms_keterampilan/edit/${id}`)
+            .then(response => {
+                this.setState({
+                    ket_nama: response.data.ket_nama
+                })
+            }).catch(err => console.log(err));
     }
 
-    handleNamaUpdateChange(event){
+    handleNamaUpdateChange(event) {
         this.setState({
-            ket_nama : event.target.value
+            ket_nama: event.target.value
         })
     }
 
-    handleFormSubmit(event){
+    handleFormSubmit(event) {
+        alert("Your Data is Updated!");
         event.preventDefault();
         const id = this.props.match.params.id;
-        axios.put(`http://127.0.0.1:8000/api/ms_keterampilan/${id}/update`,{
-            ket_nama : this.state.ket_nama
+        axios.put(`http://127.0.0.1:8000/api/ms_keterampilan/update/${id}`, {
+            ket_nama: this.state.ket_nama
         }).then(response => {
             this.setState({
-                ket_nama : ''
+                ket_nama: ''
             })
             this.props.history.push('/KeterampilanList');
         }).catch(err => console.log(err));
     }
 
-    render(){
+    render() {
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Edit Keterampilan</div>
-    
-                            <div className="card-body">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        onChange={this.handleNamaUpdateChange}
-                                        value={this.state.ket_nama}
-                                        className="form-control" 
-                                        placeholder="Enter Nama Keterampilan"/>
+            <div className="content-wrapper">
+                {/* Content Header (Page header) */}
+                <section className="content-header">
+                    <h1>
+                        Skills Data
+                    </h1>
+                    <ol className="breadcrumb">
+                        <li className="active">Skills Data</li>
+                    </ol>
+                </section>
+
+                <section className="content" >
+                    <div className="row">
+                        {/* left column */}
+                        <div className="col-md-12">
+                            {/* general form elements */}
+                            <div className="box box-primary">
+                                <form role="form" onSubmit={this.handleFormSubmit}>
+                                    <div className="box-body">
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Type of Skill</label>
+                                            <input type="text"
+                                                required
+                                                name="ket_nama"
+                                                onChange={this.handleNamaUpdateChange}
+                                                value={this.state.ket_nama}
+                                                className="form-control"
+                                                placeholder="Enter Type of Skill" />
+                                        </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary">Ubah Data Keterampilan</button>
+                                    {/* /.box-body */}
+                                    <div className="box-footer">
+                                        <button type="submit" className="btn btn-primary">Update Data</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </div >
         );
     }
 }

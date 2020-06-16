@@ -1,191 +1,69 @@
-import React, {Component} from "react";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
+import React, { Component } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Menu from "./Menu";
+import MenuHRD from "./MenuHRD";
+import MenuHRD2 from "./MenuHRD2";
+import MenuPewawancara from "./MenuPewawancara";
+import NavbarAwal from "./components/NavbarAwal";
+import { Router, Switch, Route, Link } from "react-router-dom";
+import Login from "./components/Login";
+import LoginHRD from "./components/LoginHRD";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LoginHRD2 from "./components/LoginHRD2";
+import LoginPewawancara from "./components/LoginPewawancara";
+import Register from "./components/Register";
+import Home from "./components/Home";
+import history from "./history";
+import DashboardPelamar_PerusahaanList from "./components/DashboardPelamar_PerusahaanList";
 
-import PelamarEdit from "./components/PelamarEdit";
-import PelamarList from "./components/PelamarList";
-import PelamarCreate from "./components/PelamarCreate";
-import PelamarRegistrasi from "./components/PelamarRegistrasi";
-import BidangPekerjaanEdit from "./components/BidangPekerjaanEdit";
-import BidangPekerjaanList from "./components/BidangPekerjaanList";
-import BidangPekerjaanCreate from "./components/BidangPekerjaanCreate";
-import KeterampilanEdit from "./components/KeterampilanEdit";
-import KeterampilanList from "./components/KeterampilanList";
-import KeterampilanCreate from "./components/KeterampilanCreate";
-import PerusahaanEdit from "./components/PerusahaanEdit";
-import PerusahaanList from "./components/PerusahaanList";
-import PerusahaanCreate from "./components/PerusahaanCreate";
-import PengalamanKerjaEdit from "./components/PengalamanKerjaEdit";
-import PengalamanKerjaList from "./components/PengalamanKerjaList";
-import PengalamanKerjaCreate from "./components/PengalamanKerjaCreate";
-import RiwayatPendidikanEdit from "./components/RiwayatPendidikanEdit";
-import RiwayatPendidikanList from "./components/RiwayatPendidikanList";
-import RiwayatPendidikanCreate from "./components/RiwayatPendidikanCreate";
-import LowonganEdit from "./components/LowonganEdit";
-import LowonganList from "./components/LowonganList";
-import LowonganCreate from "./components/LowonganCreate";
-import RoleEdit from "./components/RoleEdit";
-import RoleList from "./components/RoleList";
-import RoleCreate from "./components/RoleCreate";
-
-class App extends Component {
-  constructor(props){
+export default class App extends Component {
+  constructor(props) {
     super(props);
+
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+
     this.state = {
-      error: null,
-      response: {},
-      ms_pelamar: {},
-      ms_bidang_pekerjaan: {},
-      ms_keterampilan: {},
-      ms_perusahaan: {},
-      ms_pengalaman_kerja: {},
-      ms_riwayat_pendidikan: {},
-      ms_lowongan: {},
-      ms_role: {}
-    }
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {},
+    };
   }
 
-  // const myHeaders = new Headers();
-  //   myHeaders.append('Content-Type', 'application/json');
-
-  //   const options = {
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //     myHeaders
-  //   };
-
-  //   fetch(apiUrl, options)
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       this.setState({
-  //         response: result,
-  //         isAddProduct: false
-  //       })
-  //     },
-  //     (error) => {
-  //       this.setState({ error });
-  //     }
-  //   )
-  // }
-
+  handleSuccessfulAuth() {
+    this.props.history.push("/");
+  }
   render() {
-    return (<Router>
-      <div className="App">
-        <header>
-          <Navbar bg="success" variant="success">
-            <Container>
-
-              <Navbar.Brand>
-                <Link to={"/PelamarList"} className="nav-link">
-                  Kelola Pelamar
-                </Link>
-                <Link to={"/BidangPekerjaanList"} className="nav-link">
-                  Kelola Bidang Pekerjaan
-                </Link>
-                <Link to={"/KeterampilanList"} className="nav-link">
-                  Kelola Keterampilan
-                </Link>
-                <Link to={"/PerusahaanList"} className="nav-link">
-                  Kelola Perusahaan
-                </Link>
-                <Link to={"/PengalamanKerjaList"} className="nav-link">
-                  Kelola Pengalaman Kerja
-                </Link>
-                <Link to={"/RiwayatPendidikanList"} className="nav-link">
-                  Kelola Riwayat Pendidikan
-                </Link>
-                <Link to={"/LowonganList"} className="nav-link">
-                  Kelola Lowongan
-                </Link>
-                <Link to={"/RoleList"} className="nav-link">
-                  Kelola Role
-                </Link>
-              </Navbar.Brand>
-
-              <Nav className="justify-content-end">
-                <Nav>
-                  <Link to={"/PelamarCreate"} className="nav-link">
-                    Tambah Pelamar
-                  </Link>
-                  <Link to={"/PelamarRegistrasi"} className="nav-link">
-                    Registrasi Pelamar
-                  </Link>
-                  <Link to={"/BidangPekerjaanCreate"} className="nav-link">
-                    Tambah Bidang Pekerjaan
-                  </Link>
-                  <Link to={"/KeterampilanCreate"} className="nav-link">
-                    Tambah Keterampilan
-                  </Link>
-                  <Link to={"/PerusahaanCreate"} className="nav-link">
-                    Tambah Perusahaan
-                  </Link>
-                  <Link to={"/PengalamanKerjaCreate"} className="nav-link">
-                    Tambah Pengalaman Kerja
-                  </Link>
-                  <Link to={"/RiwayatPendidikanCreate"} className="nav-link">
-                    Tambah Riwayat Pendidikan
-                  </Link>
-                  <Link to={"/LowonganCreate"} className="nav-link">
-                    Tambah Lowongan
-                  </Link>
-                  <Link to={"/RoleCreate"} className="nav-link">
-                    Tambah Role
-                  </Link>
-                </Nav>
-              </Nav>
-
-            </Container>
-          </Navbar>
-        </header>
-
-        <Container>
-          <Row>
-            <Col md={12}>
-              <div className="wrapper">
-                <Switch>
-                  <Route exact path='/' component={PelamarList} />
-                  <Route path='/PelamarList' component={PelamarList} />
-                  <Route path='/PelamarCreate' component={PelamarCreate} />
-                  <Route path='/PelamarRegistrasi' component={PelamarRegistrasi} />
-                  <Route path="/:id/PelamarEdit" component={PelamarEdit}/>
-                  <Route path='/BidangPekerjaanList' component={BidangPekerjaanList} />
-                  <Route path='/BidangPekerjaanCreate' component={BidangPekerjaanCreate} />
-                  <Route path="/:id/BidangPekerjaanEdit" component={BidangPekerjaanEdit}/>
-                  <Route path='/KeterampilanList' component={KeterampilanList} />
-                  <Route path='/KeterampilanCreate' component={KeterampilanCreate} />
-                  <Route path="/:id/KeterampilanEdit" component={KeterampilanEdit}/>
-                  <Route path='/PerusahaanList' component={PerusahaanList} />
-                  <Route path='/PerusahaanCreate' component={PerusahaanCreate} />
-                  <Route path="/:id/PerusahaanEdit" component={PerusahaanEdit}/>
-                  <Route path='/PengalamanKerjaList' component={PengalamanKerjaList} />
-                  <Route path='/PengalamanKerjaCreate' component={PengalamanKerjaCreate} />
-                  <Route path="/:id/PengalamanKerjaEdit" component={PengalamanKerjaEdit}/>
-                  <Route path='/RiwayatPendidikanList' component={RiwayatPendidikanList} />
-                  <Route path='/RiwayatPendidikanCreate' component={RiwayatPendidikanCreate} />
-                  <Route path="/:id/RiwayatPendidikanEdit" component={RiwayatPendidikanEdit}/>
-                  <Route path='/LowonganList' component={LowonganList} />
-                  <Route path='/LowonganCreate' component={LowonganCreate} />
-                  <Route path="/:id/LowonganEdit" component={LowonganEdit}/>
-                  <Route path='/RoleList' component={RoleList} />
-                  <Route path='/RoleCreate' component={RoleCreate} />
-                  <Route path="/:id/RoleEdit" component={RoleEdit}/>
-                </Switch>
-                </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </Router>
-      
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/login_admin">
+            <LoginHRD />
+          </Route>
+          <Route path="/login_admin2">
+            <LoginHRD2 />
+          </Route>
+          <Route path="/login_pewawancara">
+            <LoginPewawancara />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route
+            path="/"
+            exact
+            render={(props) => <Menu {...props} user={this.state.user} />}
+          />
+          <Route path="/HRD" render={(props) => <MenuHRD />} />
+          <Route path="/HRD2" render={(props) => <MenuHRD2 />} />
+          <Route path="/Pewawancara" render={(props) => <MenuPewawancara />} />
+          <Route path="/pelamar/home">
+            <DashboardPelamar_PerusahaanList />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
-
-export default App;

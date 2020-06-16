@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 class RoleEdit extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            rol_nama_lengkap : '',
-            rol_email : '',
-            rol_no_telepon : '',
-            rol_username : ''
+            ms_perusahaan: [],
+            ms_role: [],
+            rol_nama_lengkap: '',
+            rol_email: '',
+            rol_no_telepon: '',
+            rol_username: ''
         }
         this.handleNamaLengkapUpdateChange = this.handleNamaLengkapUpdateChange.bind(this);
         this.handleEmailUpdateChange = this.handleEmailUpdateChange.bind(this);
@@ -18,111 +20,133 @@ class RoleEdit extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const id = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:8000/api/ms_role/${id}/edit`)
-        .then(response => {
-            this.setState({
-                rol_nama_lengkap : response.data.rol_nama_lengkap,
-                rol_email : response.data.rol_email,
-                rol_no_telepon : response.data.rol_no_telepon,
-                rol_username : response.data.rol_username
-            })
-        }).catch(err => console.log(err));
+        axios.get(`http://127.0.0.1:8000/api/ms_role/edit/${id}`)
+            .then(response => {
+                this.setState({
+                    rol_nama_lengkap: response.data.rol_nama_lengkap,
+                    rol_email: response.data.rol_email,
+                    rol_no_telepon: response.data.rol_no_telepon,
+                    rol_username: response.data.rol_username
+                })
+            }).catch(err => console.log(err));
+
+        axios.get('http://127.0.0.1:8000/api/ms_perusahaan/ddl')
+            .then(response => {
+                this.setState({
+                    ms_perusahaan: response.data.data
+                });
+            });
+
     }
 
-    handleNamaLengkapUpdateChange(event){
+    handleNamaLengkapUpdateChange(event) {
         this.setState({
-            rol_nama_lengkap : event.target.value
+            rol_nama_lengkap: event.target.value
         })
     }
 
-    handleEmailUpdateChange(event){
+    handleEmailUpdateChange(event) {
         this.setState({
-            rol_email : event.target.value
+            rol_email: event.target.value
         })
     }
 
-    handleNoTeleponUpdateChange(event){
+    handleNoTeleponUpdateChange(event) {
         this.setState({
-            rol_no_telepon : event.target.value
+            rol_no_telepon: event.target.value
         })
     }
 
-    handleUsernameUpdateChange(event){
+    handleUsernameUpdateChange(event) {
         this.setState({
-            rol_username : event.target.value
+            rol_username: event.target.value
         })
     }
 
-    handleFormSubmit(event){
+    handleFormSubmit(event) {
         event.preventDefault();
         const id = this.props.match.params.id;
-        axios.put(`http://127.0.0.1:8000/api/ms_role/${id}/update`,{
-            rol_nama_lengkap : this.state.rol_nama_lengkap,
-            rol_email : this.state.rol_email,
-            rol_no_telepon : this.state.rol_no_telepon,
-            rol_username : this.state.rol_username
+        axios.put(`http://127.0.0.1:8000/api/ms_role/update/${id}`, {
+            rol_nama_lengkap: this.state.rol_nama_lengkap,
+            rol_email: this.state.rol_email,
+            rol_no_telepon: this.state.rol_no_telepon,
+            rol_username: this.state.rol_username
         }).then(response => {
             this.setState({
-                rol_nama_lengkap : '',
-                rol_email : '',
-                rol_no_telepon : '',
-                rol_username : ''
+                rol_nama_lengkap: '',
+                rol_email: '',
+                rol_no_telepon: '',
+                rol_username: ''
             })
             this.props.history.push('/RoleList');
         }).catch(err => console.log(err));
     }
 
-    render(){
+    render() {
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Edit Role</div>
-    
-                            <div className="card-body">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        onChange={this.handleNamaLengkapUpdateChange}
-                                        value={this.state.rol_nama_lengkap}
-                                        className="form-control" 
-                                        placeholder="Enter Nama Lengkap"/>
+            <div className="content-wrapper">
+                {/* Content Header (Page header) */}
+                <section className="content-header">
+                    <h1>
+                        Role Data
+                    </h1>
+                    <ol className="breadcrumb">
+                        <li className="active">Role Data</li>
+                    </ol>
+                </section>
+
+                <section className="content" >
+                    <div className="row">
+                        {/* left column */}
+                        <div className="col-md-12">
+                            {/* general form elements */}
+                            <div className="box box-primary">
+                                <form role="form" onSubmit={this.handleFormSubmit}>
+                                    <div className="box-body">
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Company</label>
+                                            <select className="form-control select2" value={this.state.rol_perusahaan}
+                                                onChange={(event) => this.setState({ rol_perusahaan: event.target.value })}>
+                                                {this.state.ms_perusahaan.map(perusahaans => (
+                                                    <option key={perusahaans.id} value={perusahaans.id}>
+                                                        {perusahaans.per_nama}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Role Name</label>
+                                            <input type="text"
+                                                required
+                                                name="rol_nama_lengkap"
+                                                onChange={this.handleNamaLengkapUpdateChange}
+                                                value={this.state.rol_nama_lengkap}
+                                                className="form-control"
+                                                placeholder="Enter Role Name" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Email</label>
+                                            <input type="text"
+                                                required
+                                                name="rol_email"
+                                                onChange={this.handleEmailUpdateChange}
+                                                value={this.state.rol_email}
+                                                className="form-control"
+                                                placeholder="Enter Email" />
+                                        </div>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="text" 
-                                        required
-                                        onChange={this.handleEmailUpdateChange}
-                                        value={this.state.rol_email}
-                                        className="form-control" 
-                                        placeholder="Enter Email"/>
+                                    {/* /.box-body */}
+                                    <div className="box-footer">
+                                        <button type="submit" className="btn btn-primary">Update Data</button>
                                     </div>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        onChange={this.handleUsernameUpdateChange}
-                                        value={this.state.rol_username}
-                                        className="form-control"
-                                        placeholder="Enter Username"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="text" 
-                                        required
-                                        onChange={this.handleNoTeleponUpdateChange}
-                                        value={this.state.rol_no_telepon}
-                                        className="form-control"
-                                        placeholder="Enter No Telepon"/>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary">Ubah Data Role</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </div >
         );
     }
 }

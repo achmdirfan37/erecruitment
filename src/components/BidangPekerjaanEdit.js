@@ -14,7 +14,7 @@ class BidangPekerjaanEdit extends Component {
 
     componentDidMount(){
         const id = this.props.match.params.id;
-        axios.get(`http://127.0.0.1:8000/api/ms_bidang_pekerjaan/${id}/edit`)
+        axios.get(`http://127.0.0.1:8000/api/ms_bidang_pekerjaan/edit/${id}`)
         .then(response => {
             this.setState({
                 bid_nama : response.data.bid_nama
@@ -31,41 +31,58 @@ class BidangPekerjaanEdit extends Component {
     handleFormSubmit(event){
         event.preventDefault();
         const id = this.props.match.params.id;
-        axios.put(`http://127.0.0.1:8000/api/ms_bidang_pekerjaan/${id}/update`,{
+        axios.put(`http://127.0.0.1:8000/api/ms_bidang_pekerjaan/update/${id}`,{
             bid_nama : this.state.bid_nama
         }).then(response => {
             this.setState({
                 bid_nama : ''
             })
-            this.props.history.push('/');
+            this.props.history.push('/BidangPekerjaanList');
         }).catch(err => console.log(err));
     }
 
     render(){
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Edit Bidang Pekerjaan</div>
-    
-                            <div className="card-body">
-                                <form onSubmit={this.handleFormSubmit}>
-                                    <div className="form-group">
-                                        <input type="text"
-                                        required
-                                        onChange={this.handleNamaUpdateChange}
-                                        value={this.state.bid_nama}
-                                        className="form-control" 
-                                        placeholder="Enter Nama Bidang Pekerjaan"/>
+            <div className="content-wrapper">
+                {/* Content Header (Page header) */}
+                <section className="content-header">
+                    <h1>
+                    Field of Work Data
+                    </h1>
+                    <ol className="breadcrumb">
+                        <li className="active">Field of Work Data</li>
+                    </ol>
+                </section>
+
+                <section className="content" >
+                    <div className="row">
+                        {/* left column */}
+                        <div className="col-md-12">
+                            {/* general form elements */}
+                            <div className="box box-primary">
+                                <form role="form" onSubmit={this.handleFormSubmit}>
+                                    <div className="box-body">
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1">Type Field of Work</label>
+                                            <input type="text"
+                                                required
+                                                name="bid_nama"
+                                                onChange={this.handleNamaUpdateChange}
+                                                value={this.state.bid_nama}
+                                                className="form-control"
+                                                placeholder="Enter Type Field of Work" />
+                                        </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary">Ubah Data Bidang Pekerjaan</button>
+                                    {/* /.box-body */}
+                                    <div className="box-footer">
+                                        <button type="submit" className="btn btn-primary">Update Data</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </div >
         );
     }
 }
