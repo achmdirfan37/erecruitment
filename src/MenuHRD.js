@@ -10,6 +10,9 @@ import Landing from "./components/Landing";
 import BidangPekerjaanEdit from "./components/BidangPekerjaanEdit";
 import BidangPekerjaanList from "./components/BidangPekerjaanList";
 import BidangPekerjaanCreate from "./components/BidangPekerjaanCreate";
+import PosisiEdit from "./components/PosisiEdit";
+import PosisiList from "./components/PosisiList";
+import PosisiCreate from "./components/PosisiCreate";
 import KeterampilanEdit from "./components/KeterampilanEdit";
 import KeterampilanList from "./components/KeterampilanList";
 import KeterampilanCreate from "./components/KeterampilanCreate";
@@ -58,6 +61,9 @@ import DaftarLamaran_Wawancara2 from "./components/DaftarLamaran_Wawancara2";
 import DaftarLamaran_Wawancara1 from "./components/DaftarLamaran_Wawancara1";
 import DaftarLamaran_BelumDiproses from "./components/DaftarLamaran_BelumDiproses";
 import DashboardHrd_LowonganList from "./components/DashboardHrd_LowonganList";
+import TemplateList from "./components/TemplateList";
+import TemplateCreate from "./components/TemplateCreate";
+import TemplateEdit from "./components/TemplateEdit";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -67,6 +73,7 @@ export default class Menu extends Component {
       response: {},
       ms_pelamar: {},
       ms_bidang_pekerjaan: {},
+      ms_posisi: {},
       ms_keterampilan: {},
       ms_perusahaan: {},
       ms_pengalaman_kerja: {},
@@ -151,6 +158,22 @@ export default class Menu extends Component {
                 </li>
                 <li>
                   <a>
+                    <Link to={"/PosisiList"} className="fa fa-user">
+                      {" "}
+                    </Link>{" "}
+                    <span>Posisi</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={"/TemplateList"} className="fa fa-user">
+                      {" "}
+                    </Link>{" "}
+                    <span>Template</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
                     <Link to={"/login_admin"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
@@ -192,6 +215,9 @@ export default class Menu extends Component {
                 path="/:id/BidangPekerjaanEdit"
                 component={BidangPekerjaanEdit}
               />
+              <Route path="/PosisiList" component={PosisiList} />
+              <Route path="/PosisiCreate" component={PosisiCreate} />
+              <Route path="/:id/PosisiEdit" component={PosisiEdit} />
               <Route path="/KeterampilanList" component={KeterampilanList} />
               <Route
                 path="/KeterampilanCreate"
@@ -204,6 +230,8 @@ export default class Menu extends Component {
               <Route path="/PerusahaanList" component={PerusahaanList} />
               <Route path="/PerusahaanCreate" component={PerusahaanCreate} />
               <Route path="/:id/PerusahaanEdit" component={PerusahaanEdit} />
+              <Route path="/TemplateList" component={TemplateList} />
+              <Route path="/TemplateCreate" component={TemplateCreate} />
               <Route
                 path="/PengalamanKerjaList"
                 component={PengalamanKerjaList}
@@ -274,14 +302,8 @@ export default class Menu extends Component {
                 path="/:id/Undang_WawancaraHR"
                 component={Undang_Wawancara1}
               />
-              <Route
-                path="/:id/Undang_Psikotes"
-                component={Undang_Psikotes}
-              />
-              <Route
-                path="/:id/Undang_MCU"
-                component={Undang_MCU}
-              />
+              <Route path="/:id/Undang_Psikotes" component={Undang_Psikotes} />
+              <Route path="/:id/Undang_MCU" component={Undang_MCU} />
               <Route
                 path="/PelamarList_InvitationInterview"
                 component={PelamarList_InvitationInterview}

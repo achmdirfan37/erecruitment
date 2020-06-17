@@ -92,10 +92,10 @@ class KeterampilanList extends React.Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>
-          Skills Data
+          Data Keterampilan
               </h1>
           <ol className="breadcrumb">
-            <li className="active">Skills Data</li>
+            <li className="active">Data Keterampilan</li>
           </ol>
         </section>
 
@@ -117,7 +117,7 @@ class KeterampilanList extends React.Component {
                     }}
                     style={{ marginRight: 8 }} />
 
-                  <button onClick={this.cari}>Search Skills Data</button>
+                  <button onClick={this.cari}>Cari Data</button>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -127,14 +127,14 @@ class KeterampilanList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to={"/KeterampilanCreate"} className="btn btn-warning btn-sm mr-2">Add Skill Data</Link>
+                  <Link to={"/KeterampilanCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Keterampilan</Link>
                   <br />
                   <table id="example1" className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Type of Skill</th>
-                        <th>Action</th>
+                        <th>Keterampilan</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -146,8 +146,8 @@ class KeterampilanList extends React.Component {
                                 <td>{ms_keterampilans.id}</td>
                                 <td>{ms_keterampilans.ket_nama}</td>
                                 <td>
-                                  <Link to={`/${ms_keterampilans.id}/KeterampilanEdit`} className="btn btn-warning btn-sm mr-2">Update</Link>
-                                  <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteKeterampilan.bind(this, ms_keterampilans.id)}>Delete</Link>
+                                  <Link to={`/${ms_keterampilans.id}/KeterampilanEdit`} className="btn btn-warning btn-sm mr-2">Ubah</Link>
+                                  <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteKeterampilan.bind(this, ms_keterampilans.id)}>Hapus</Link>
                                 </td>
                               </tr>
                             ))

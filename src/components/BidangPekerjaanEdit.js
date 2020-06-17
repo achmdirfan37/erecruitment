@@ -29,6 +29,7 @@ class BidangPekerjaanEdit extends Component {
     }
 
     handleFormSubmit(event){
+        alert("Data Berhasil Tersimpan!");
         event.preventDefault();
         const id = this.props.match.params.id;
         axios.put(`http://127.0.0.1:8000/api/ms_bidang_pekerjaan/update/${id}`,{
@@ -47,10 +48,10 @@ class BidangPekerjaanEdit extends Component {
                 {/* Content Header (Page header) */}
                 <section className="content-header">
                     <h1>
-                    Field of Work Data
+                    Data Bidang Pekerjaan
                     </h1>
                     <ol className="breadcrumb">
-                        <li className="active">Field of Work Data</li>
+                        <li className="active">Data Bidang Pekerjaan</li>
                     </ol>
                 </section>
 
@@ -63,19 +64,19 @@ class BidangPekerjaanEdit extends Component {
                                 <form role="form" onSubmit={this.handleFormSubmit}>
                                     <div className="box-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Type Field of Work</label>
+                                            <label htmlFor="exampleInputEmail1">Bidang Pekerjaan</label>
                                             <input type="text"
                                                 required
                                                 name="bid_nama"
                                                 onChange={this.handleNamaUpdateChange}
                                                 value={this.state.bid_nama}
                                                 className="form-control"
-                                                placeholder="Enter Type Field of Work" />
+                                                placeholder="Masukkan Nama Bidang Pekerjaan" />
                                         </div>
                                     </div>
                                     {/* /.box-body */}
                                     <div className="box-footer">
-                                        <button type="submit" className="btn btn-primary">Update Data</button>
+                                        <button type="submit" className="btn btn-primary">Simpan Data</button>
                                     </div>
                                 </form>
                             </div>

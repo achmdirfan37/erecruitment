@@ -8,12 +8,13 @@ export default class LowonganCreate extends Component {
     this.state = {
       ms_perusahaan: [],
       ms_bidang_pekerjaan: [],
+      ms_posisi: [],
       low_judul: "",
       low_deskripsi: "",
       low_gaji: "",
       low_tanggal_ditutup: "",
       low_kualifikasi: "",
-      low_jabatan: "",
+      low_posisi: "",
       low_perusahaan: "",
       low_bidang_kerja: "",
       low_spesialisasi: "",
@@ -30,7 +31,7 @@ export default class LowonganCreate extends Component {
     this.handleKualifikasiInputChange = this.handleKualifikasiInputChange.bind(
       this
     );
-    this.handleJabatanInputChange = this.handleJabatanInputChange.bind(this);
+    this.handlePosisiInputChange = this.handlePosisiInputChange.bind(this);
     this.handlePerusahaanInputChange = this.handlePerusahaanInputChange.bind(
       this
     );
@@ -57,6 +58,13 @@ export default class LowonganCreate extends Component {
       .then((response) => {
         this.setState({
           ms_bidang_pekerjaan: response.data.data,
+        });
+      });
+    axios
+      .get("http://127.0.0.1:8000/api/ms_posisi/ddl")
+      .then((response) => {
+        this.setState({
+          ms_posisi: response.data.data,
         });
       });
   }
@@ -91,9 +99,9 @@ export default class LowonganCreate extends Component {
     });
   }
 
-  handleJabatanInputChange(event) {
+  handlePosisiInputChange(event) {
     this.setState({
-      low_jabatan: event.target.value,
+      low_posisi: event.target.value,
     });
   }
 
@@ -116,6 +124,7 @@ export default class LowonganCreate extends Component {
   }
 
   handleFormSubmit(event) {
+    alert("Data Berhasil Tersimpan!");
     event.preventDefault();
     axios
       .post("http://127.0.0.1:8000/api/ms_lowongan/create", {
@@ -124,7 +133,7 @@ export default class LowonganCreate extends Component {
         low_gaji: this.state.low_gaji,
         low_tanggal_ditutup: this.state.rpd_tanggal_lulus,
         low_kualifikasi: this.state.low_kualifikasi,
-        low_jabatan: this.state.low_jabatan,
+        low_posisi: this.state.low_posisi,
         low_perusahaan: this.state.low_perusahaan,
         low_bidang_kerja: this.state.low_bidang_kerja,
         low_spesialisasi: this.state.low_spesialisasi,
@@ -136,7 +145,7 @@ export default class LowonganCreate extends Component {
           low_gaji: "",
           low_tanggal_ditutup: "",
           low_kualifikasi: "",
-          low_jabatan: "",
+          low_posisi: "",
           low_perusahaan: "",
           low_bidang_kerja: "",
           low_spesialisasi: "",
@@ -151,9 +160,9 @@ export default class LowonganCreate extends Component {
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
         <section className="content-header">
-          <h1>Job Vacancy</h1>
+          <h1>Data Lowongan Pekerjaan</h1>
           <ol className="breadcrumb">
-            <li className="active">Job Vacancy</li>
+            <li className="active">Data Lowongan Pekerjaan</li>
           </ol>
         </section>
 
@@ -166,7 +175,7 @@ export default class LowonganCreate extends Component {
                 <form role="form" onSubmit={this.handleFormSubmit}>
                   <div className="box-body">
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Company</label>
+                      <label htmlFor="exampleInputEmail1">Perusahaan</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_perusahaan}
@@ -183,7 +192,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Job Vacancy</label>
+                      <label htmlFor="exampleInputEmail1">Lowongan Pekerjaan</label>
                       <input
                         type="text"
                         required
@@ -191,11 +200,11 @@ export default class LowonganCreate extends Component {
                         onChange={this.handleJudulInputChange}
                         value={this.state.low_judul}
                         className="form-control"
-                        placeholder="Enter Job Vacancy"
+                        placeholder="Masukkan Lowongan Pekerjaan"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Description</label>
+                      <label htmlFor="exampleInputEmail1">Deskripsi</label>
                       <textarea
                         type="text"
                         required
@@ -203,11 +212,11 @@ export default class LowonganCreate extends Component {
                         onChange={this.handleDeskripsiInputChange}
                         value={this.state.low_deskripsi}
                         className="form-control"
-                        placeholder="Enter Description"
+                        placeholder="Masukkan Deskripsi Lowongan"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Range Salary</label>
+                      <label htmlFor="exampleInputEmail1">Gaji</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_gaji}
@@ -239,7 +248,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Date Closed</label>
+                      <label htmlFor="exampleInputEmail1">Tanggal Berakhir</label>
                       <input
                         type="date"
                         required
@@ -251,7 +260,7 @@ export default class LowonganCreate extends Component {
                     </div>
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">
-                        Educational Stage
+                        Pendidikan Terakhir
                       </label>
                       <select
                         className="form-control select2"
@@ -270,23 +279,25 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Position</label>
+                      <label htmlFor="exampleInputEmail1">Posisi</label>
                       <select
                         className="form-control select2"
-                        value={this.state.low_jabatan}
+                        value={this.state.low_posisi}
                         onChange={(event) =>
-                          this.setState({ low_jabatan: event.target.value })
+                          this.setState({
+                            low_posisi: event.target.value,
+                          })
                         }
                       >
-                        <option value="Staff">Staff</option>
-                        <option value="Team Leader">Team Leader</option>
-                        <option value="Supervisor">Supervisor</option>
-                        <option value="Manager">Manager</option>
-                        <option value="General Manager">General Manager</option>
+                        {this.state.ms_posisi.map((posisis) => (
+                          <option key={posisis.id} value={posisis.id}>
+                            {posisis.pos_nama}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Field of Work</label>
+                      <label htmlFor="exampleInputEmail1">Bidang Pekerjaan</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_bidang_kerja}
@@ -304,7 +315,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Specialization</label>
+                      <label htmlFor="exampleInputEmail1">Spesialisasi</label>
                       <input
                         type="text"
                         required
@@ -312,14 +323,14 @@ export default class LowonganCreate extends Component {
                         onChange={this.handleSpesialisasiInputChange}
                         value={this.state.low_spesialisasi}
                         className="form-control"
-                        placeholder="Enter Specialization"
+                        placeholder="Masukkan Spesialisasi"
                       />
                     </div>
                   </div>
                   {/* /.box-body */}
                   <div className="box-footer">
                     <button type="submit" className="btn btn-primary">
-                      Save Data
+                      Simpan Data
                     </button>
                   </div>
                 </form>

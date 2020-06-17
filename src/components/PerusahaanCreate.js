@@ -109,10 +109,10 @@ export default class PerusahaanCreate extends Component {
                 {/* Content Header (Page header) */}
                 <section className="content-header">
                     <h1>
-                        Company Data
+                        Data Perusahaan
                     </h1>
                     <ol className="breadcrumb">
-                        <li className="active">Company Data</li>
+                        <li className="active">Data Perusahaan</li>
                     </ol>
                 </section>
 
@@ -125,7 +125,7 @@ export default class PerusahaanCreate extends Component {
                                 <form role="form" onSubmit={this.handleFormSubmit}>
                                     <div className="box-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Company Picture <font color="#ff0000"> format file *png, jpg, jpeg</font></label>
+                                            <label htmlFor="exampleInputEmail1">Foto<font color="#ff0000"> format file *png, jpg, jpeg</font></label>
                                             <input className="input_imagem_artigo"
                                                 type="file"
                                                 required
@@ -134,24 +134,24 @@ export default class PerusahaanCreate extends Component {
                                                 className="form-control" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Company Name</label>
+                                            <label htmlFor="exampleInputEmail1">Nama Perusahaan</label>
                                             <input type="text"
                                                 required
                                                 name="per_nama"
                                                 onChange={this.handleNamaInputChange}
                                                 value={this.state.per_nama}
                                                 className="form-control"
-                                                placeholder="Enter Company Name" />
+                                                placeholder="Masukkan Nama Perusahaan" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Description</label>
+                                            <label htmlFor="exampleInputEmail1">Deskripsi</label>
                                             <textarea type="text"
                                                 required
                                                 name="per_deskripsi"
                                                 onChange={this.handleDeskripsiInputChange}
                                                 value={this.state.per_deskripsi}
                                                 className="form-control"
-                                                placeholder="Enter Description" />
+                                                placeholder="Masukkan Deskripsi Perusahaan" />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="exampleInputEmail1">Email</label>
@@ -161,44 +161,44 @@ export default class PerusahaanCreate extends Component {
                                                 onChange={this.handleEmailInputChange}
                                                 value={this.state.per_email}
                                                 className="form-control"
-                                                placeholder="Enter Email" />
+                                                placeholder="Masukkan Email" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Phone Number</label>
+                                            <label htmlFor="exampleInputEmail1">No Telepon</label>
                                             <input type="text"
                                                 required
                                                 name="per_no_telepon"
                                                 onChange={this.handleNoTeleponInputChange}
                                                 value={this.state.per_no_telepon}
                                                 className="form-control"
-                                                placeholder="Enter Phone Number" />
+                                                placeholder="Masukkan No Telepon" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Website Address</label>
+                                            <label htmlFor="exampleInputEmail1">Situs Web</label>
                                             <input type="text"
                                                 required
                                                 name="per_alamat_website"
                                                 onChange={this.handleAlamatWebsiteInputChange}
                                                 value={this.state.per_alamat_website}
                                                 className="form-control"
-                                                placeholder="Enter Website Address" />
+                                                placeholder="Masukkan Situs Web" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Company Address</label>
+                                            <label htmlFor="exampleInputEmail1">Alamat</label>
                                             <textarea type="text"
                                                 required
                                                 name="per_alamat"
                                                 onChange={this.handleAlamatInputChange}
                                                 value={this.state.per_alamat}
                                                 className="form-control"
-                                                placeholder="Enter Company Address"
+                                                placeholder="Masukkan Alamat Perusahaan"
                                                 rows={5}
                                                 cols={5} />
                                         </div>
                                     </div>
                                     {/* /.box-body */}
                                     <div className="box-footer">
-                                        <button type="submit" className="btn btn-primary">Save Data</button>
+                                        <button type="submit" className="btn btn-primary">Simpan Data</button>
                                     </div>
                                 </form>
                             </div>

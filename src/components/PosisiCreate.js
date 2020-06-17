@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import { Alert } from 'react-alert';
 //import PelamarList from './pelamar-listing.component';
 
-export default class KeterampilanCreate extends Component {
+export default class PosisiCreate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ket_nama: ''
+            pos_nama: ''
         }
         this.handleNamaInputChange = this.handleNamaInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -15,33 +14,34 @@ export default class KeterampilanCreate extends Component {
 
     handleNamaInputChange(event) {
         this.setState({
-            ket_nama: event.target.value
+            pos_nama: event.target.value
         })
     }
 
     handleFormSubmit(event) {
         alert("Data Berhasil Tersimpan!");
         event.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/ms_keterampilan/create', {
-            ket_nama: this.state.ket_nama
+        axios.post('http://127.0.0.1:8000/api/ms_posisi/create', {
+            pos_nama: this.state.pos_nama
         }).then(response => {
             this.setState({
-                ket_nama: ''
+                pos_nama: ''
             })
-            this.props.history.push('/KeterampilanList');
+            this.props.history.push('/PosisiList');
         }).catch(err => console.log(err));
     }
 
     render() {
+
         return (
             <div className="content-wrapper">
                 {/* Content Header (Page header) */}
                 <section className="content-header">
                     <h1>
-                        Data Keterampilan
+                        Data Posisi
                     </h1>
                     <ol className="breadcrumb">
-                        <li className="active">Data Keterampilan</li>
+                        <li className="active">Data Posisi</li>
                     </ol>
                 </section>
 
@@ -54,14 +54,14 @@ export default class KeterampilanCreate extends Component {
                                 <form role="form" onSubmit={this.handleFormSubmit}>
                                     <div className="box-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Keterampilan</label>
+                                            <label htmlFor="exampleInputEmail1">Posisi</label>
                                             <input type="text"
                                                 required
-                                                name="ket_nama"
+                                                name="pos_nama"
                                                 onChange={this.handleNamaInputChange}
-                                                value={this.state.ket_nama}
+                                                value={this.state.pos_nama}
                                                 className="form-control"
-                                                placeholder="Masukkan Jenis Keterampilan" />
+                                                placeholder="Masukkan Nama Posisi" />
                                         </div>
                                     </div>
                                     {/* /.box-body */}

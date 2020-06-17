@@ -85,10 +85,10 @@ class PerusahaanList extends React.Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>
-            Company Data
+            Data Perusahaan
               </h1>
           <ol className="breadcrumb">
-            <li className="active">Company Data</li>
+            <li className="active">Data Perusahaan</li>
           </ol>
         </section>
 
@@ -110,7 +110,7 @@ class PerusahaanList extends React.Component {
                     }}
                     style={{ marginRight: 8 }} />
 
-                  <button onClick={this.cari}>Search for Company Data</button>
+                  <button onClick={this.cari}>Cari Data</button>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -120,20 +120,20 @@ class PerusahaanList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to={"/PerusahaanCreate"} className="btn btn-warning btn-sm mr-2">Add Company Data</Link>
+                  <Link to={"/PerusahaanCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Perusahaan</Link>
                   <br />
                   <table id="example1" className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Company Photo</th>
-                        <th>Company Name</th>
-                        <th>Description</th>
+                        <th>Foto</th>
+                        <th>Nama Perusahaan</th>
+                        <th>Deskripsi</th>
                         <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Website Address</th>
-                        <th>Company Address</th>
-                        <th>Action</th>
+                        <th>No Telepon</th>
+                        <th>Situs Web</th>
+                        <th>Alamat</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -150,8 +150,8 @@ class PerusahaanList extends React.Component {
                               <td>{ms_perusahaans.per_alamat_website}</td>
                               <td>{ms_perusahaans.per_alamat}</td>
                               <td>
-                                <Link to={`/${ms_perusahaans.id}/PerusahaanEdit`} className="btn btn-warning btn-sm mr-2">Update</Link>
-                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deletePerusahaan.bind(this, ms_perusahaans.id)}>Delete</Link>
+                                <Link to={`/${ms_perusahaans.id}/PerusahaanEdit`} className="btn btn-warning btn-sm mr-2">Ubah</Link>
+                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deletePerusahaan.bind(this, ms_perusahaans.id)}>Hapus</Link>
                               </td>
                             </tr>
                           ))

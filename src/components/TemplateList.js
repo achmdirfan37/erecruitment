@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Table, Button, Alert } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 
-class RiwayatPendidikanList extends React.Component {
+class TemplateList extends React.Component {
   constructor() {
     super();
+
     // data provinsi disimpan di state.provinces
     this.state = {
-      ms_lowongan: [],
+      ms_template_undangan: [],
       activePage: 1,
       itemsCountPerPage: 1,
       totalItemsCount: 1,
@@ -20,14 +21,16 @@ class RiwayatPendidikanList extends React.Component {
 
   componentDidMount() {
     // ajax call
-    axios.get("http://127.0.0.1:8000/api/ms_lowongan/view").then((response) => {
-      this.setState({
-        ms_lowongan: response.data.data,
-        itemsCountPerPage: response.data.per_page,
-        totalItemsCount: response.data.total,
-        activePage: response.data.current_page,
+    axios
+      .get("http://127.0.0.1:8000/api/ms_template_undangan/view")
+      .then((response) => {
+        this.setState({
+          ms_template_undangan: response.data.data,
+          itemsCountPerPage: response.data.per_page,
+          totalItemsCount: response.data.total,
+          activePage: response.data.current_page,
+        });
       });
-    });
   }
 
   handlePageChange(pageNumber) {
@@ -35,10 +38,12 @@ class RiwayatPendidikanList extends React.Component {
     //this.setState({activePage: pageNumber});
     //"http://127.0.0.1:8000/api/ms_pelamar/view?page=1"
     axios
-      .get("http://127.0.0.1:8000/api/ms_lowongan/view?page=" + pageNumber)
+      .get(
+        "http://127.0.0.1:8000/api/ms_template_undangan/view?page=" + pageNumber
+      )
       .then((response) => {
         this.setState({
-          ms_lowongan: response.data.data,
+          ms_template_undangan: response.data.data,
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total,
           activePage: response.data.current_page,
@@ -49,11 +54,12 @@ class RiwayatPendidikanList extends React.Component {
   cari = () => {
     axios
       .get(
-        "http://localhost:8000/api/ms_lowongan/search?cari=" + this.state.cari
+        "http://localhost:8000/api/ms_template_undangan/search?cari=" +
+          this.state.cari
       )
       .then((response) => {
         this.setState({
-          ms_lowongan: response.data.data,
+          ms_template_undangan: response.data.data,
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total,
           activePage: response.data.current_page,
@@ -61,15 +67,17 @@ class RiwayatPendidikanList extends React.Component {
       });
   };
 
-  deleteLowongan(lowongan_id) {
+  deleteTemplate(temp_id) {
     axios
-      .delete("http://127.0.0.1:8000/api/ms_lowongan/delete/" + lowongan_id)
+      .delete(
+        "http://127.0.0.1:8000/api/ms_template_undangan/delete/" + temp_id
+      )
       .then((response) => {
-        var lowongann = this.state.ms_lowongan;
-        for (var i = 0; i < lowongann.length; i++) {
-          if (lowongann[i].id == lowongan_id) {
-            lowongann.splice(i, 1);
-            this.setState({ ms_lowongan: lowongann });
+        var temp = this.state.ms_template_undangan;
+        for (var i = 0; i < temp.length; i++) {
+          if (temp[i].id == temp_id) {
+            temp.splice(i, 1);
+            this.setState({ ms_template_undangan: temp });
           }
         }
       });
@@ -86,9 +94,9 @@ class RiwayatPendidikanList extends React.Component {
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
         <section className="content-header">
-          <h1>Data Lowongan Pekerjaan</h1>
+          <h1>Data Posisi</h1>
           <ol className="breadcrumb">
-            <li className="active"></li>
+            <li className="active">Daftar Template</li>
           </ol>
         </section>
 
@@ -119,12 +127,12 @@ class RiwayatPendidikanList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Link
-                    to={"/LowonganCreate"}
+                    to={"/TemplateCreate"}
                     className="btn btn-warning btn-sm mr-2"
                   >
-                    Tambah Data Lowongan Pekerjaan
+                    Tambah Template Undangan
                   </Link>
                   <br />
                   <table
@@ -134,52 +142,38 @@ class RiwayatPendidikanList extends React.Component {
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Lowongan Pekerjaan</th>
-                        <th>Level Jabatan</th>
-                        <th>Pendidikan</th>
-                        <th>Gaji</th>
-                        <th>Tanggal Kadaluarsa</th>
+                        <th>Konten</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.ms_lowongan !== null
-                        ? this.state.ms_lowongan.map((ms_lowongans) => (
-                            <tr key={ms_lowongans.id}>
-                              <td>{ms_lowongans.id}</td>
-                              <td>{ms_lowongans.low_judul}</td>
-                              <td>{ms_lowongans.low_jabatan}</td>
-                              <td>{ms_lowongans.low_kualifikasi}</td>
-                              <td>{ms_lowongans.low_gaji}</td>
-                              <td>{ms_lowongans.low_tanggal_ditutup}</td>
-                              <td>
-                                <Link
-                                  to={`/${ms_lowongans.id}/LowonganEdit`}
-                                  className="btn btn-warning btn-sm mr-2"
-                                >
-                                  Ubah
-                                </Link>
-                                &nbsp;&nbsp;
-                                <Link
-                                  to={`/${ms_lowongans.id}/LowonganEdit`}
-                                  className="btn btn-warning btn-sm mr-2"
-                                >
-                                  Tayangkan Kembali
-                                </Link>
-                                &nbsp;&nbsp;
-                                <Link
-                                  href="fake-url"
-                                  className="btn btn-warning btn-sm mr-2"
-                                  onClick={this.deleteLowongan.bind(
-                                    this,
-                                    ms_lowongans.id
-                                  )}
-                                >
-                                  Hapus
-                                </Link>
-                              </td>
-                            </tr>
-                          ))
+                      {this.state.ms_template_undangan !== undefined
+                        ? this.state.ms_template_undangan.map(
+                            (ms_template_undangans) => (
+                              <tr key={ms_template_undangans.temp_id}>
+                                <td>{ms_template_undangans.temp_id}</td>
+                                <td>{ms_template_undangans.temp_content}</td>
+                                <td>
+                                  <Link
+                                    to={`/${ms_template_undangans.temp_id}/TemplateUndanganEdit`}
+                                    className="btn btn-warning btn-sm mr-2"
+                                  >
+                                    Ubah
+                                  </Link>
+                                  <Link
+                                    href="fake-url"
+                                    className="btn btn-warning btn-sm mr-2"
+                                    onClick={this.deleteTemplate.bind(
+                                      this,
+                                      ms_template_undangans.temp_id
+                                    )}
+                                  >
+                                    Hapus
+                                  </Link>
+                                </td>
+                              </tr>
+                            )
+                          )
                         : null}
                     </tbody>
                   </table>
@@ -209,4 +203,4 @@ class RiwayatPendidikanList extends React.Component {
   }
 }
 
-export default RiwayatPendidikanList;
+export default TemplateList;

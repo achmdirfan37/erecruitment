@@ -1,47 +1,57 @@
-import React, { Component } from "react";
-import axios from 'axios'
-import { Alert } from 'react-alert';
-//import PelamarList from './pelamar-listing.component';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
 
-export default class KeterampilanCreate extends Component {
-    constructor(props) {
+class PosisiEdit extends Component {
+    constructor(props){
         super(props);
         this.state = {
-            ket_nama: ''
+            pos_nama : ''
         }
-        this.handleNamaInputChange = this.handleNamaInputChange.bind(this);
+        this.handleNamaUpdateChange = this.handleNamaUpdateChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handleNamaInputChange(event) {
-        this.setState({
-            ket_nama: event.target.value
-        })
-    }
-
-    handleFormSubmit(event) {
-        alert("Data Berhasil Tersimpan!");
-        event.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/ms_keterampilan/create', {
-            ket_nama: this.state.ket_nama
-        }).then(response => {
+    componentDidMount(){
+        const id = this.props.match.params.id;
+        axios.get(`http://127.0.0.1:8000/api/ms_posisi/edit/${id}`)
+        .then(response => {
             this.setState({
-                ket_nama: ''
+                pos_nama : response.data.pos_nama
             })
-            this.props.history.push('/KeterampilanList');
         }).catch(err => console.log(err));
     }
 
-    render() {
+    handleNamaUpdateChange(event){
+        this.setState({
+            pos_nama : event.target.value
+        })
+    }
+
+    handleFormSubmit(event){
+        alert("Data Berhasil Tersimpan!");
+        event.preventDefault();
+        const id = this.props.match.params.id;
+        axios.put(`http://127.0.0.1:8000/api/ms_posisi/update/${id}`,{
+            pos_nama : this.state.pos_nama
+        }).then(response => {
+            this.setState({
+                pos_nama : ''
+            })
+            this.props.history.push('/PosisiList');
+        }).catch(err => console.log(err));
+    }
+
+    render(){
         return (
             <div className="content-wrapper">
                 {/* Content Header (Page header) */}
                 <section className="content-header">
                     <h1>
-                        Data Keterampilan
+                    Data Posisi
                     </h1>
                     <ol className="breadcrumb">
-                        <li className="active">Data Keterampilan</li>
+                        <li className="active">Data Posisi</li>
                     </ol>
                 </section>
 
@@ -54,14 +64,14 @@ export default class KeterampilanCreate extends Component {
                                 <form role="form" onSubmit={this.handleFormSubmit}>
                                     <div className="box-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Keterampilan</label>
+                                            <label htmlFor="exampleInputEmail1">Posisi</label>
                                             <input type="text"
                                                 required
-                                                name="ket_nama"
-                                                onChange={this.handleNamaInputChange}
-                                                value={this.state.ket_nama}
+                                                name="pos_nama"
+                                                onChange={this.handleNamaUpdateChange}
+                                                value={this.state.pos_nama}
                                                 className="form-control"
-                                                placeholder="Masukkan Jenis Keterampilan" />
+                                                placeholder="Masukkan Nama Posisi" />
                                         </div>
                                     </div>
                                     {/* /.box-body */}
@@ -77,3 +87,5 @@ export default class KeterampilanCreate extends Component {
         );
     }
 }
+
+export default PosisiEdit;

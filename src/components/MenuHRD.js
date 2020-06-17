@@ -10,6 +10,9 @@ import Landing from "./components/Landing";
 import BidangPekerjaanEdit from "./components/BidangPekerjaanEdit";
 import BidangPekerjaanList from "./components/BidangPekerjaanList";
 import BidangPekerjaanCreate from "./components/BidangPekerjaanCreate";
+import PosisiEdit from "./components/PosisiEdit";
+import PosisiList from "./components/PosisiList";
+import PosisiCreate from "./components/PosisiCreate";
 import KeterampilanEdit from "./components/KeterampilanEdit";
 import KeterampilanList from "./components/KeterampilanList";
 import KeterampilanCreate from "./components/KeterampilanCreate";
@@ -28,9 +31,6 @@ import LowonganCreate from "./components/LowonganCreate";
 import PersonEdit from "./components/PersonEdit";
 import PersonList from "./components/PersonList";
 import PersonCreate from "./components/PersonCreate";
-import PewawancaraEdit from "./components/PewawancaraEdit";
-import PewawancaraList from "./components/PewawancaraList";
-import PewawancaraCreate from "./components/PewawancaraCreate";
 import DashboardPelamar_PerusahaanList from "./components/DashboardPelamar_PerusahaanList";
 import DashboardPelamar_LowonganList from "./components/DashboardPelamar_LowonganList";
 import DashboardPelamar_LamarPekerjaan from "./components/DashboardPelamar_LamarPekerjaan";
@@ -42,22 +42,25 @@ import DashboardPelamar_LamaranKerjaAcceptDecline from "./components/DashboardPe
 import DashboardPelamar_Accept from "./components/DashboardPelamar_Accept";
 import DashboardPelamar_Decline from "./components/DashboardPelamar_Decline";
 import PelamarList_InvitationInterview from "./components/PelamarList_InvitationInterview";
+import PelamarList_InvitationInterview2 from "./components/PelamarList_InvitationInterview2";
+import PelamarList_InvitationInterviewHR from "./components/PelamarList_InvitationInterviewHR";
 import PelamarList_InvitationPsikotes from "./components/PelamarList_InvitationPsikotes";
 import PelamarList_InvitationMCU from "./components/PelamarList_InvitationMCU";
 import Undang_Wawancara1 from "./components/Undang_Wawancara1";
+import Undang_Wawancara2 from "./components/Undang_Wawancara2";
+import Undang_WawancaraHR from "./components/Undang_WawancaraHR";
 import Undang_Psikotes from "./components/Undang_Psikotes";
 import Undang_MCU from "./components/Undang_MCU";
 import LoginHRD from "./components/LoginHRD";
-//
-import DashboardHrd_LowonganList from "./components/DashboardHrd_LowonganList";
+import DaftarLamaran_TidakSesuai from "./components/DaftarLamaran_TidakSesuai";
+import DaftarLamaran_Placement from "./components/DaftarLamaran_Placement";
+import DaftarLamaran_MCU from "./components/DaftarLamaran_MCU";
+import DaftarLamaran_Psikotes from "./components/DaftarLamaran_Psikotes";
+import DaftarLamaran_WawancaraHR from "./components/DaftarLamaran_WawancaraHR";
+import DaftarLamaran_Wawancara2 from "./components/DaftarLamaran_Wawancara2";
+import DaftarLamaran_Wawancara1 from "./components/DaftarLamaran_Wawancara1";
 import DaftarLamaran_BelumDiproses from "./components/DaftarLamaran_BelumDiproses";
-import DaftarLamaran_Wawancara1 from "./DaftarLamaran_Wawancara1";
-import DaftarLamaran_Wawancara2 from "./DaftarLamaran_Wawancara2";
-import DaftarLamaran_WawancaraHR from "./DaftarLamaran_WawancaraHR";
-import DaftarLamaran_Psikotes from "./DaftarLamaran_Psikotes";
-import DaftarLamaran_MCU from "./DaftarLamaran_MCU";
-import DaftarLamaran_Placement from "./DaftarLamaran_Placement";
-import DaftarLamaran_TidakSesuai from "./DaftarLamaran_TidakSesuai";
+import DashboardHrd_LowonganList from "./components/DashboardHrd_LowonganList";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -67,6 +70,7 @@ export default class Menu extends Component {
       response: {},
       ms_pelamar: {},
       ms_bidang_pekerjaan: {},
+      ms_posisi: {},
       ms_keterampilan: {},
       ms_perusahaan: {},
       ms_pengalaman_kerja: {},
@@ -114,29 +118,7 @@ export default class Menu extends Component {
                     >
                       {" "}
                     </Link>{" "}
-                    <span>Daftar Lowongan Pekerjaan</span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <Link
-                      to={"/PelamarList_InvitationPsikotes"}
-                      className="fa fa-user"
-                    >
-                      {" "}
-                    </Link>{" "}
-                    <span>Invitation Psikotes</span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <Link
-                      to={"/PelamarList_InvitationMCU"}
-                      className="fa fa-user"
-                    >
-                      {" "}
-                    </Link>{" "}
-                    <span>Invitation MCU</span>
+                    <span>Lowongan Pekerjaan</span>
                   </a>
                 </li>
                 <li>
@@ -144,7 +126,7 @@ export default class Menu extends Component {
                     <Link to={"/PerusahaanList"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Company</span>
+                    <span>Perusahaan</span>
                   </a>
                 </li>
                 <li>
@@ -152,7 +134,7 @@ export default class Menu extends Component {
                     <Link to={"/LowonganList"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Job Vacancy</span>
+                    <span>Lowongan</span>
                   </a>
                 </li>
                 <li>
@@ -160,15 +142,7 @@ export default class Menu extends Component {
                     <Link to={"/PersonList"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Person</span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <Link to={"/PewawancaraList"} className="fa fa-user">
-                      {" "}
-                    </Link>{" "}
-                    <span>Pewawancara</span>
+                    <span>Administrator</span>
                   </a>
                 </li>
                 <li>
@@ -176,7 +150,15 @@ export default class Menu extends Component {
                     <Link to={"/BidangPekerjaanList"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Field of Work</span>
+                    <span>Bidang Pekerjaan</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={"/PosisiList"} className="fa fa-user">
+                      {" "}
+                    </Link>{" "}
+                    <span>Posisi</span>
                   </a>
                 </li>
                 <li>
@@ -184,7 +166,7 @@ export default class Menu extends Component {
                     <Link to={"/login_admin"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Log Out</span>
+                    <span>Keluar</span>
                   </a>
                 </li>
               </ul>
@@ -221,6 +203,18 @@ export default class Menu extends Component {
               <Route
                 path="/:id/BidangPekerjaanEdit"
                 component={BidangPekerjaanEdit}
+              />
+              <Route
+                path="/PosisiList"
+                component={PosisiList}
+              />
+              <Route
+                path="/PosisiCreate"
+                component={PosisiCreate}
+              />
+              <Route
+                path="/:id/PosisiEdit"
+                component={PosisiEdit}
               />
               <Route path="/KeterampilanList" component={KeterampilanList} />
               <Route
@@ -264,9 +258,6 @@ export default class Menu extends Component {
               <Route path="/PersonList" component={PersonList} />
               <Route path="/PersonCreate" component={PersonCreate} />
               <Route path="/:id/PersonEdit" component={PersonEdit} />
-              <Route path="/PewawancaraList" component={PewawancaraList} />
-              <Route path="/PewawancaraCreate" component={PewawancaraCreate} />
-              <Route path="/:id/PewawancaraEdit" component={PewawancaraEdit} />
               <Route
                 path="/DashboardPelamar_PerusahaanList"
                 component={DashboardPelamar_PerusahaanList}
@@ -300,6 +291,14 @@ export default class Menu extends Component {
                 component={Undang_Wawancara1}
               />
               <Route
+                path="/:id/Undang_Wawancara2"
+                component={Undang_Wawancara1}
+              />
+              <Route
+                path="/:id/Undang_WawancaraHR"
+                component={Undang_Wawancara1}
+              />
+              <Route
                 path="/:id/Undang_Psikotes"
                 component={Undang_Psikotes}
               />
@@ -310,6 +309,14 @@ export default class Menu extends Component {
               <Route
                 path="/PelamarList_InvitationInterview"
                 component={PelamarList_InvitationInterview}
+              />
+              <Route
+                path="/PelamarList_InvitationInterview2"
+                component={PelamarList_InvitationInterview2}
+              />
+              <Route
+                path="/PelamarList_InvitationInterviewHR"
+                component={PelamarList_InvitationInterviewHR}
               />
               <Route
                 path="/PelamarList_InvitationPsikotes"

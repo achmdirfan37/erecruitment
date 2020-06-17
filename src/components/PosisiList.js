@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { Table, Button, Alert } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 
-class BidangPekerjaanList extends React.Component {
+class PosisiList extends React.Component {
   constructor() {
     super()
 
     // data provinsi disimpan di state.provinces
     this.state = {
-      ms_bidang_pekerjaan: [],
+      ms_posisi: [],
       activePage: 1,
       itemsCountPerPage: 1,
       totalItemsCount: 1,
@@ -21,10 +21,10 @@ class BidangPekerjaanList extends React.Component {
 
   componentDidMount() {
     // ajax call
-    axios.get('http://127.0.0.1:8000/api/ms_bidang_pekerjaan/view')
+    axios.get('http://127.0.0.1:8000/api/ms_posisi/view')
       .then(response => {
         this.setState({
-          ms_bidang_pekerjaan: response.data.data,
+          ms_posisi: response.data.data,
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total,
           activePage: response.data.current_page
@@ -36,10 +36,10 @@ class BidangPekerjaanList extends React.Component {
     console.log(`active page is ${pageNumber}`);
     //this.setState({activePage: pageNumber});
     //"http://127.0.0.1:8000/api/ms_pelamar/view?page=1"
-    axios.get('http://127.0.0.1:8000/api/ms_bidang_pekerjaan/view?page=' + pageNumber)
+    axios.get('http://127.0.0.1:8000/api/ms_posisi/view?page=' + pageNumber)
       .then(response => {
         this.setState({
-          ms_bidang_pekerjaan: response.data.data,
+          ms_posisi: response.data.data,
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total,
           activePage: response.data.current_page
@@ -48,10 +48,10 @@ class BidangPekerjaanList extends React.Component {
   }
 
   cari = () => {
-    axios.get('http://localhost:8000/api/ms_bidang_pekerjaan/search?cari=' + this.state.cari)
+    axios.get('http://localhost:8000/api/ms_posisi/search?cari=' + this.state.cari)
       .then(response => {
         this.setState({
-          ms_bidang_pekerjaan: response.data.data,
+          ms_posisi: response.data.data,
           itemsCountPerPage: response.data.per_page,
           totalItemsCount: response.data.total,
           activePage: response.data.current_page
@@ -59,17 +59,16 @@ class BidangPekerjaanList extends React.Component {
       });
   }
 
-  deleteBidangPekerjaan(bid_id) {
-    axios.delete('http://127.0.0.1:8000/api/ms_bidang_pekerjaan/delete/' + bid_id)
+  deletePosisi(pos_id) {
+    axios.delete('http://127.0.0.1:8000/api/ms_posisi/delete/' + pos_id)
       .then(response => {
-        var bid = this.state.ms_bidang_pekerjaan;
-        for (var i = 0; i < bid.length; i++) {
-          if (bid[i].id == bid_id) {
-            bid.splice(i, 1);
-            this.setState({ bid: bid });
+        var pos = this.state.ms_posisi;
+        for (var i = 0; i < pos.length; i++) {
+          if (pos[i].id == pos_id) {
+            pos.splice(i, 1);
+            this.setState({ ms_posisi: pos });
           }
         }
-        this.props.history.push('/BidangPekerjaanList');
       });
   }
 
@@ -85,10 +84,10 @@ class BidangPekerjaanList extends React.Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>
-            Data Bidang Pekerjaan
+            Data Posisi
               </h1>
           <ol className="breadcrumb">
-            <li className="active">Data Bidang Pekerjaan</li>
+            <li className="active">Data Posisi</li>
           </ol>
         </section>
 
@@ -119,26 +118,26 @@ class BidangPekerjaanList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to={"/BidangPekerjaanCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Bidang Pekerjaan</Link>
+                  <Link to={"/PosisiCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Posisi</Link>
                   <br />
                   <table id="example1" className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Bidang Pekerjaan</th>
+                        <th>Posisi</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
                       {
-                        this.state.ms_bidang_pekerjaan !== undefined
-                          ? this.state.ms_bidang_pekerjaan.map(ms_bidang_pekerjaans => (
-                            <tr key={ms_bidang_pekerjaans.id}>
-                              <td>{ms_bidang_pekerjaans.id}</td>
-                              <td>{ms_bidang_pekerjaans.bid_nama}</td>
+                        this.state.ms_posisi !== undefined
+                          ? this.state.ms_posisi.map(ms_posisis => (
+                            <tr key={ms_posisis.id}>
+                              <td>{ms_posisis.id}</td>
+                              <td>{ms_posisis.pos_nama}</td>
                               <td>
-                                <Link to={`/${ms_bidang_pekerjaans.id}/BidangPekerjaanEdit`} className="btn btn-warning btn-sm mr-2">Ubah</Link>
-                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteBidangPekerjaan.bind(this, ms_bidang_pekerjaans.id)}>Hapus</Link>
+                                <Link to={`/${ms_posisis.id}/PosisiEdit`} className="btn btn-warning btn-sm mr-2">Ubah</Link>
+                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deletePosisi.bind(this, ms_posisis.id)}>Hapus</Link>
                               </td>
                             </tr>
                           ))
@@ -173,4 +172,4 @@ class BidangPekerjaanList extends React.Component {
   }
 }
 
-export default BidangPekerjaanList;
+export default PosisiList;
