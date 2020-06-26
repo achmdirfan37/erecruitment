@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Table, Button, Alert } from "react-bootstrap";
 import Pagination from "react-js-pagination";
+import swal from "sweetalert";
+import parse from "html-react-parser";
 
 class TemplateList extends React.Component {
   constructor() {
@@ -68,19 +70,34 @@ class TemplateList extends React.Component {
   };
 
   deleteTemplate(temp_id) {
-    axios
-      .delete(
-        "http://127.0.0.1:8000/api/ms_template_undangan/delete/" + temp_id
-      )
-      .then((response) => {
-        var temp = this.state.ms_template_undangan;
-        for (var i = 0; i < temp.length; i++) {
-          if (temp[i].id == temp_id) {
-            temp.splice(i, 1);
-            this.setState({ ms_template_undangan: temp });
-          }
-        }
-      });
+    swal({
+      title: "Apakah Anda Yakin?",
+      text: "Data yang dihapus tidak akan bisa dikembalikan!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(
+            "http://127.0.0.1:8000/api/ms_template_undangan/delete/" + temp_id
+          )
+          .then((response) => {
+            var temp = this.state.ms_template_undangan;
+            for (var i = 0; i < temp.length; i++) {
+              if (temp[i].id == temp_id) {
+                temp.splice(i, 1);
+                this.setState({ ms_template_undangan: temp });
+              }
+            }
+          });
+        swal("Poof! Data Berhasil Dihapus!", {
+          icon: "success",
+        });
+      } else {
+        swal("Data Batal Dihapus");
+      }
+    });
   }
 
   onChangeText = (event) => {
@@ -94,7 +111,7 @@ class TemplateList extends React.Component {
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
         <section className="content-header">
-          <h1>Data Posisi</h1>
+          <h1>Data Template</h1>
           <ol className="breadcrumb">
             <li className="active">Daftar Template</li>
           </ol>
@@ -150,12 +167,19 @@ class TemplateList extends React.Component {
                       {this.state.ms_template_undangan !== undefined
                         ? this.state.ms_template_undangan.map(
                             (ms_template_undangans) => (
-                              <tr key={ms_template_undangans.temp_id}>
-                                <td>{ms_template_undangans.temp_id}</td>
-                                <td>{ms_template_undangans.temp_content}</td>
+                              <tr key={ms_template_undangans.id}>
+                                <td>{ms_template_undangans.id}</td>
+                                <td>
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html:
+                                        ms_template_undangans.temp_content,
+                                    }}
+                                  />
+                                </td>
                                 <td>
                                   <Link
-                                    to={`/${ms_template_undangans.temp_id}/TemplateUndanganEdit`}
+                                    to={`/${ms_template_undangans.id}/TemplateEdit`}
                                     className="btn btn-warning btn-sm mr-2"
                                   >
                                     Ubah
@@ -165,7 +189,7 @@ class TemplateList extends React.Component {
                                     className="btn btn-warning btn-sm mr-2"
                                     onClick={this.deleteTemplate.bind(
                                       this,
-                                      ms_template_undangans.temp_id
+                                      ms_template_undangans.id
                                     )}
                                   >
                                     Hapus

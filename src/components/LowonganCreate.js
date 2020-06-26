@@ -60,13 +60,11 @@ export default class LowonganCreate extends Component {
           ms_bidang_pekerjaan: response.data.data,
         });
       });
-    axios
-      .get("http://127.0.0.1:8000/api/ms_posisi/ddl")
-      .then((response) => {
-        this.setState({
-          ms_posisi: response.data.data,
-        });
+    axios.get("http://127.0.0.1:8000/api/ms_posisi/ddl").then((response) => {
+      this.setState({
+        ms_posisi: response.data.data,
       });
+    });
   }
 
   handleJudulInputChange(event) {
@@ -131,7 +129,7 @@ export default class LowonganCreate extends Component {
         low_judul: this.state.low_judul,
         low_deskripsi: this.state.low_deskripsi,
         low_gaji: this.state.low_gaji,
-        low_tanggal_ditutup: this.state.rpd_tanggal_lulus,
+        low_tanggal_ditutup: this.state.low_tanggal_ditutup,
         low_kualifikasi: this.state.low_kualifikasi,
         low_posisi: this.state.low_posisi,
         low_perusahaan: this.state.low_perusahaan,
@@ -175,7 +173,7 @@ export default class LowonganCreate extends Component {
                 <form role="form" onSubmit={this.handleFormSubmit}>
                   <div className="box-body">
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Perusahaan</label>
+                      <label>Perusahaan</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_perusahaan}
@@ -192,7 +190,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Lowongan Pekerjaan</label>
+                      <label>Lowongan Pekerjaan</label>
                       <input
                         type="text"
                         required
@@ -204,7 +202,7 @@ export default class LowonganCreate extends Component {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Deskripsi</label>
+                      <label>Deskripsi</label>
                       <textarea
                         type="text"
                         required
@@ -216,7 +214,7 @@ export default class LowonganCreate extends Component {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Gaji</label>
+                      <label>Gaji</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_gaji}
@@ -248,7 +246,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Tanggal Berakhir</label>
+                      <label>Tanggal Berakhir</label>
                       <input
                         type="date"
                         required
@@ -259,9 +257,7 @@ export default class LowonganCreate extends Component {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">
-                        Pendidikan Terakhir
-                      </label>
+                      <label>Pendidikan Terakhir</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_kualifikasi}
@@ -279,7 +275,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Posisi</label>
+                      <label>Posisi</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_posisi}
@@ -297,7 +293,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Bidang Pekerjaan</label>
+                      <label>Bidang Pekerjaan</label>
                       <select
                         className="form-control select2"
                         value={this.state.low_bidang_kerja}
@@ -315,7 +311,7 @@ export default class LowonganCreate extends Component {
                       </select>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Spesialisasi</label>
+                      <label>Spesialisasi</label>
                       <input
                         type="text"
                         required

@@ -135,7 +135,7 @@ class RiwayatPendidikanList extends React.Component {
                       <tr>
                         <th>No</th>
                         <th>Lowongan Pekerjaan</th>
-                        <th>Level Jabatan</th>
+                        <th>Posisi</th>
                         <th>Pendidikan</th>
                         <th>Gaji</th>
                         <th>Tanggal Kadaluarsa</th>
@@ -148,7 +148,7 @@ class RiwayatPendidikanList extends React.Component {
                             <tr key={ms_lowongans.id}>
                               <td>{ms_lowongans.id}</td>
                               <td>{ms_lowongans.low_judul}</td>
-                              <td>{ms_lowongans.low_jabatan}</td>
+                              <td>{ms_lowongans.pos_nama}</td>
                               <td>{ms_lowongans.low_kualifikasi}</td>
                               <td>{ms_lowongans.low_gaji}</td>
                               <td>{ms_lowongans.low_tanggal_ditutup}</td>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Table, Button, Alert } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 
-class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
+class DashboardPenilaian_LamaranKerjaHead extends React.Component {
   constructor() {
     super()
     // data provinsi disimpan di state.provinces
@@ -23,7 +23,7 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
   componentDidMount() {
     // ajax call
     const id = 20;
-    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraStaff/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraSectionHead/${id}`)
       .then(response => {
         this.setState({
           tr_lamaran_kerja: response.data.data,
@@ -37,7 +37,7 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
   handlePageChange(pageNumber) {
     const id = 20;
     console.log(`active page is ${pageNumber}`);
-    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraStaff/${id}?page=` + pageNumber)
+    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraSectionHead/${id}?page=` + pageNumber)
       .then(response => {
         this.setState({
           tr_lamaran_kerja: response.data.data,
@@ -92,8 +92,8 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
                               <td>{tr_lamaran_kerjas.lk_status_rekrutmen}</td>
                               <td>
                                 <Link
-                                  to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_PelamarStaff`}
-                                  className="btn btn-warning btn-sm mr-2">Penilaian Gol 1,2,3 (Staff)</Link>
+                                  to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_PelamarSectionHead`}
+                                  className="btn btn-warning btn-sm mr-2">Penilaian Gol 4 (Section Head)</Link>
                                 <Link to={`/${tr_lamaran_kerjas.lk_pelamar}/DetailPelamar_Lamaran`} className="btn btn-warning btn-sm mr-2">Lihat Detail</Link>
                               </td>
                             </tr>
@@ -129,4 +129,4 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
   }
 }
 
-export default DashboardPenilaian_LamaranKerjaStaff;
+export default DashboardPenilaian_LamaranKerjaHead;

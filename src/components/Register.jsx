@@ -61,7 +61,7 @@ export class Register extends Component {
             <div className="login-box-body">
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group has-feedback">
-                  <label htmlFor="exampleInputEmail1">Full Name</label>
+                  <label>Full Name</label>
                   <input
                     type="text"
                     required
@@ -87,7 +87,7 @@ export class Register extends Component {
                   </small>
                 </div>
                 <div className="form-group has-feedback">
-                  <label htmlFor="exampleInputEmail1">Phone Number</label>
+                  <label>Phone Number</label>
                   <input
                     type="text"
                     required
@@ -98,7 +98,7 @@ export class Register extends Component {
                   />
                 </div>
                 <div className="form-group has-feedback">
-                  <label htmlFor="exampleInputEmail1">Gender</label>
+                  <label>Gender</label>
                   <br />
                   <div onChange={this.handleChange}>
                     <input
@@ -112,7 +112,7 @@ export class Register extends Component {
                   </div>
                 </div>
                 <div className="form-group has-feedback">
-                  <label htmlFor="exampleInputEmail1">Birth Date</label>
+                  <label>Birth Date</label>
                   <input
                     type="date"
                     required

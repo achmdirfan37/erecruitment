@@ -98,9 +98,9 @@ class PersonList extends React.Component {
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
         <section className="content-header">
-          <h1>Person Data</h1>
+          <h1>Data Administrator</h1>
           <ol className="breadcrumb">
-            <li className="active">Person Data</li>
+            <li className="active">Data Administrator</li>
           </ol>
         </section>
 
@@ -123,7 +123,7 @@ class PersonList extends React.Component {
                     }}
                     style={{ marginRight: 8 }}
                   />
-                  <button onClick={this.cari}>Search for Person Data</button>
+                  <button onClick={this.cari}>Cari Data</button>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -138,7 +138,7 @@ class PersonList extends React.Component {
                     to={"/PersonCreate"}
                     className="btn btn-warning btn-sm mr-2"
                   >
-                    Add Person Data
+                    Tambah Data Administrator
                   </Link>
                   <br />
                   <table
@@ -148,12 +148,12 @@ class PersonList extends React.Component {
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Person Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Company</th>
+                        <th>Perusahaan</th>
                         <th>Role</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Status Aktif</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -175,13 +175,13 @@ class PersonList extends React.Component {
                                     ms_persons.id
                                   )}
                                 >
-                                  Non-Active
+                                  Tidak Aktif
                                 </Link>
                                 <Link
                                   to={`/${ms_persons.id}/PersonEdit`}
                                   className="btn btn-warning btn-sm mr-2"
                                 >
-                                  Update
+                                  Ubah
                                 </Link>
                                 <Link
                                   href="fake-url"
@@ -191,7 +191,7 @@ class PersonList extends React.Component {
                                     ms_persons.id
                                   )}
                                 >
-                                  Delete
+                                  Hapus
                                 </Link>
                               </td>
                             </tr>

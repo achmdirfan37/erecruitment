@@ -67,27 +67,18 @@ class DashboardPenilaian_PelamarHead extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/statusAccept/${id}`)
+      .get(
+        `http://127.0.0.1:8000/api/tr_lamaran_kerja/detailPelamarPenilaian/${id}`
+      )
       .then((response) => {
         this.setState({
           lk_lamaran: response.data.id,
-          lk_lowongan: response.data.lk_lowongan,
-          lk_perusahaan: response.data.lk_perusahaan,
-          lk_status_rekrutmen: response.data.lk_status_rekrutmen,
           lk_pelamar: response.data.lk_pelamar,
-        });
-      })
-      .catch((err) => console.log(err));
-
-    const pel = this.props.match.params.lk_pelamar;
-    axios
-      .get(`http://127.0.0.1:8000/api/ms_pelamar/viewDetail/${pel}`)
-      .then((response) => {
-        this.setState({
+          lk_status_rekrutmen: response.data.lk_status_rekrutmen,
+          lk_posisi: response.data.pos_nama,
           lk_nama: response.data.pel_nama_lengkap,
-          pel_tanggal_lahir: response.data.pel_tanggal_lahir,
+          pel_nama_lengkap: response.data.pel_tanggal_lahir,
           pel_umur: response.data.pel_umur,
-          lk_posisi: response.data.pel_posisi,
         });
       })
       .catch((err) => console.log(err));

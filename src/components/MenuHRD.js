@@ -61,6 +61,8 @@ import DaftarLamaran_Wawancara2 from "./components/DaftarLamaran_Wawancara2";
 import DaftarLamaran_Wawancara1 from "./components/DaftarLamaran_Wawancara1";
 import DaftarLamaran_BelumDiproses from "./components/DaftarLamaran_BelumDiproses";
 import DashboardHrd_LowonganList from "./components/DashboardHrd_LowonganList";
+import DetailPelamar_Lamaran from "./components/DetailPelamar_Lamaran";
+import LaporanHrd_StatusRekrutmen from "./components/LaporanHrd_StatusRekrutmen";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -159,6 +161,14 @@ export default class Menu extends Component {
                       {" "}
                     </Link>{" "}
                     <span>Posisi</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={"/LaporanHrd_StatusRekrutmen"} className="fa fa-user">
+                      {" "}
+                    </Link>{" "}
+                    <span>Laporan Lamaran Kerja</span>
                   </a>
                 </li>
                 <li>
@@ -361,6 +371,14 @@ export default class Menu extends Component {
               <Route
                 path="/:id/DaftarLamaran_TidakSesuai"
                 component={DaftarLamaran_TidakSesuai}
+              />
+              <Route
+                path="/:id/DetailPelamar_Lamaran"
+                component={DetailPelamar_Lamaran}
+              />
+              <Route
+                path="/LaporanHrd_StatusRekrutmen"
+                component={LaporanHrd_StatusRekrutmen}
               />
             </Switch>
           </div>

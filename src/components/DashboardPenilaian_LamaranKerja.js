@@ -22,9 +22,8 @@ class DashboardPenilaian_LamaranKerja extends React.Component {
 
   componentDidMount() {
     // ajax call
-
-    //const id = this.props.match.params.id;
-    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancara`)
+    const id = 20;
+    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancara/${id}`)
       .then(response => {
         this.setState({
           tr_lamaran_kerja: response.data.data,
@@ -36,9 +35,9 @@ class DashboardPenilaian_LamaranKerja extends React.Component {
   }
 
   handlePageChange(pageNumber) {
+    const id = 20;
     console.log(`active page is ${pageNumber}`);
-    const id = 4;
-    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancara?page=` + pageNumber)
+    axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancara/${id}?page=` + pageNumber)
       .then(response => {
         this.setState({
           tr_lamaran_kerja: response.data.data,
@@ -78,7 +77,8 @@ class DashboardPenilaian_LamaranKerja extends React.Component {
                         <th>Judul Lowongan</th>
                         <th>Posisi</th>
                         <th>Status Recruitment</th>
-                        <th>Action</th>
+                        <th>Golongan</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -89,12 +89,16 @@ class DashboardPenilaian_LamaranKerja extends React.Component {
                               <td>{tr_lamaran_kerjas.id}</td>
                               <td>{tr_lamaran_kerjas.pel_nama_lengkap}</td>
                               <td>{tr_lamaran_kerjas.low_judul}</td>
-                              <td>{tr_lamaran_kerjas.low_jabatan}</td>
+                              <td>{tr_lamaran_kerjas.pos_nama}</td>
                               <td>{tr_lamaran_kerjas.lk_status_rekrutmen}</td>
+                              <td>{tr_lamaran_kerjas.lk_golongan}</td>
                               <td>
                                 <Link
-                                  to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_LamaranKerjaDetail`}
-                                  className="btn btn-warning btn-sm mr-2">Lihat Detail Penilaian</Link>
+                                  to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_LamaranKerjaDetailStaff`}
+                                  className="btn btn-warning btn-sm mr-2">Detail Nilai Staff</Link>
+                                  <Link
+                                    to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_LamaranKerjaDetailSectionHead`}
+                                    className="btn btn-warning btn-sm mr-2">Detail Nilai Section Head</Link>
                               </td>
                             </tr>
                           ))

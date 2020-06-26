@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Table, Button, Alert } from "react-bootstrap";
 import Pagination from "react-js-pagination";
+import MenuHRD from "../MenuHRD";
 
 class DashboardHrd_LowonganList extends React.Component {
   constructor() {
@@ -36,7 +37,7 @@ class DashboardHrd_LowonganList extends React.Component {
 
   handlePageChange(pageNumber) {
     console.log(`active page is ${pageNumber}`);
-    const id = 1;
+    const id = 4;
     //this.setState({activePage: pageNumber});
     //"http://127.0.0.1:8000/api/ms_pelamar/view?page=1"
     axios
@@ -55,7 +56,7 @@ class DashboardHrd_LowonganList extends React.Component {
   }
 
   cari = () => {
-    const id = 1;
+    const id = 4;
     axios
       .get(
         `http://localhost:8000/api/ms_lowongan/searchlowonganbyperusahaan/${id}?cari=` +
@@ -125,7 +126,7 @@ class DashboardHrd_LowonganList extends React.Component {
                       <tr>
                         <th>No</th>
                         <th>Lowongan Pekerjaan</th>
-                        <th>Level Jabatan</th>
+                        <th>Posisi</th>
                         <th>Pendidikan</th>
                         <th>Gaji</th>
                         <th>Tanggal Kadaluarsa</th>
@@ -138,7 +139,7 @@ class DashboardHrd_LowonganList extends React.Component {
                             <tr key={ms_lowongans.id}>
                               <td>{ms_lowongans.id}</td>
                               <td>{ms_lowongans.low_judul}</td>
-                              <td>{ms_lowongans.low_jabatan}</td>
+                              <td>{ms_lowongans.pos_nama}</td>
                               <td>{ms_lowongans.low_kualifikasi}</td>
                               <td>{ms_lowongans.low_gaji}</td>
                               <td>{ms_lowongans.low_tanggal_ditutup}</td>
@@ -184,6 +185,12 @@ class DashboardHrd_LowonganList extends React.Component {
                                   className="btn btn-warning btn-sm mr-2"
                                 >
                                   MCU
+                                </Link>
+                                <Link
+                                  to={`/${ms_lowongans.id}/DaftarLamaran_TidakSesuai`}
+                                  className="btn btn-warning btn-sm mr-2"
+                                >
+                                  Tidak Sesuai
                                 </Link>
                               </td>
                             </tr>

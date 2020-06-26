@@ -1,38 +1,58 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Editor } from "@tinymce/tinymce-react";
+import swal from "sweetalert";
 //import PelamarList from './pelamar-listing.component';
+//----
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import { TemplatePreviewModal } from "./TemplatePreviewModal";
 
+const getHtml = (editorState) =>
+  draftToHtml(convertToRaw(editorState.getCurrentContent())); //At the top of the class component
 export default class TemplateCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      temp_content: "",
+      temp_content: null,
+      editorState: EditorState.createEmpty(),
     };
+    this.onEditorStateChange = this.onEditorStateChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleChange(content, editor) {
-    this.setState({ content });
-  }
+  //------Editor Method
+  onEditorStateChange = (editorState) => {
+    this.setState({ editorState });
+    this.setState({ temp_content: getHtml(editorState) });
+  };
 
+  //-----Submit Mthod
   handleFormSubmit(event) {
-    alert("Data Berhasil Tersimpan!");
+    // alert("Data Berhasil Tersimpan!");
     event.preventDefault();
     axios
-      .post("http://127.0.0.1:8000/api/ms_posisi/create", {
-        pos_nama: this.state.pos_nama,
+      .post("http://127.0.0.1:8000/api/ms_template_undangan/create", {
+        temp_content: this.state.temp_content,
       })
       .then((response) => {
+        swal("Sukses!", "Data Berhasil Disimpan!", "success");
         this.setState({
-          pos_nama: "",
+          temp_content: "",
         });
-        this.props.history.push("/PosisiList");
+        this.props.history.push("/TemplateList");
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        swal({
+          title: "Error!",
+          text: err,
+          icon: "error",
+        })
+      );
   }
 
   render() {
+    const { editorState } = this.state;
     return (
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
@@ -48,34 +68,16 @@ export default class TemplateCreate extends Component {
             {/* left column */}
             <div className="col-md-12">
               {/* general form elements */}
-              <div class="pull-right box-tools">
-                <button
-                  type="button"
-                  class="btn btn-info btn-sm"
-                  data-widget="collapse"
-                  data-toggle="tooltip"
-                  title="Collapse"
-                >
-                  <i class="fa fa-minus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-info btn-sm"
-                  data-widget="remove"
-                  data-toggle="tooltip"
-                  title="Remove"
-                >
-                  <i class="fa fa-times"></i>
-                </button>
-              </div>
               <div className="box box-primary">
                 <form role="form" onSubmit={this.handleFormSubmit}>
                   <div className="box-body">
                     <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Konten</label>
+                      <label>Konten</label>
                       <Editor
-                        init={{ height: 500, menubar: false }}
-                        onEditorChange={this.handleChange}
+                        editorState={editorState}
+                        wrapperClassName="rich-editor demo-wrapper"
+                        editorClassName="demo-editor"
+                        onEditorStateChange={this.onEditorStateChange}
                       />
                     </div>
                   </div>
@@ -86,6 +88,17 @@ export default class TemplateCreate extends Component {
                     </button>
                   </div>
                 </form>
+
+                <h4>Underlying HTML</h4>
+                <div className="html-view">{getHtml(editorState)}</div>
+                <button
+                  className="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#previewModal"
+                >
+                  Preview message
+                </button>
+                <TemplatePreviewModal output={getHtml(editorState)} />
               </div>
             </div>
           </div>

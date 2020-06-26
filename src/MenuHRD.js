@@ -64,6 +64,9 @@ import DashboardHrd_LowonganList from "./components/DashboardHrd_LowonganList";
 import TemplateList from "./components/TemplateList";
 import TemplateCreate from "./components/TemplateCreate";
 import TemplateEdit from "./components/TemplateEdit";
+import DetailPelamar_Lamaran from "./components/DetailPelamar_Lamaran";
+import LaporanHrd_StatusRekrutmen from "./components/LaporanHrd_StatusRekrutmen";
+import Header from "./Header";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -88,6 +91,7 @@ export default class Menu extends Component {
   render() {
     return (
       <Router>
+        <Header></Header>
         <div>
           <aside className="main-sidebar">
             {/* sidebar: style can be found in sidebar.less */}
@@ -117,16 +121,16 @@ export default class Menu extends Component {
                   <a>
                     <Link
                       to={"/DashboardHrd_LowonganList"}
-                      className="fa fa-user"
+                      className="fa fa-folder-o"
                     >
                       {" "}
                     </Link>{" "}
-                    <span>Lowongan Pekerjaan</span>
+                    <span>Daftar Lamaran</span>
                   </a>
                 </li>
                 <li>
                   <a>
-                    <Link to={"/PerusahaanList"} className="fa fa-user">
+                    <Link to={"/PerusahaanList"} className="fa fa-building-o">
                       {" "}
                     </Link>{" "}
                     <span>Perusahaan</span>
@@ -134,7 +138,7 @@ export default class Menu extends Component {
                 </li>
                 <li>
                   <a>
-                    <Link to={"/LowonganList"} className="fa fa-user">
+                    <Link to={"/LowonganList"} className="fa fa-file-archive-o">
                       {" "}
                     </Link>{" "}
                     <span>Lowongan</span>
@@ -142,7 +146,7 @@ export default class Menu extends Component {
                 </li>
                 <li>
                   <a>
-                    <Link to={"/PersonList"} className="fa fa-user">
+                    <Link to={"/PersonList"} className="fa fa-laptop">
                       {" "}
                     </Link>{" "}
                     <span>Administrator</span>
@@ -150,7 +154,10 @@ export default class Menu extends Component {
                 </li>
                 <li>
                   <a>
-                    <Link to={"/BidangPekerjaanList"} className="fa fa-user">
+                    <Link
+                      to={"/BidangPekerjaanList"}
+                      className="fa fa-briefcase"
+                    >
                       {" "}
                     </Link>{" "}
                     <span>Bidang Pekerjaan</span>
@@ -166,10 +173,21 @@ export default class Menu extends Component {
                 </li>
                 <li>
                   <a>
-                    <Link to={"/TemplateList"} className="fa fa-user">
+                    <Link to={"/TemplateList"} className="fa fa-file-text-o">
                       {" "}
                     </Link>{" "}
                     <span>Template</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link
+                      to={"/LaporanHrd_StatusRekrutmen"}
+                      className="fa fa-pie-chart"
+                    >
+                      {" "}
+                    </Link>{" "}
+                    <span>Laporan Lamaran Kerja</span>
                   </a>
                 </li>
                 <li>
@@ -186,7 +204,7 @@ export default class Menu extends Component {
           </aside>
           <div className="wrapper">
             <Switch>
-              <Route exact path="/" component={LowonganList} />
+              <Route exact path="/" component={DashboardHrd_LowonganList} />
               <Route path="/login_admin" component={LoginHRD} />
               <Route path="/PelamarList" component={PelamarList} />
               <Route path="/PelamarCreate" component={PelamarCreate} />
@@ -232,6 +250,7 @@ export default class Menu extends Component {
               <Route path="/:id/PerusahaanEdit" component={PerusahaanEdit} />
               <Route path="/TemplateList" component={TemplateList} />
               <Route path="/TemplateCreate" component={TemplateCreate} />
+              <Route path="/:id/TemplateEdit" component={TemplateEdit} />
               <Route
                 path="/PengalamanKerjaList"
                 component={PengalamanKerjaList}
@@ -359,6 +378,14 @@ export default class Menu extends Component {
               <Route
                 path="/:id/DaftarLamaran_TidakSesuai"
                 component={DaftarLamaran_TidakSesuai}
+              />
+              <Route
+                path="/:id/DetailPelamar_Lamaran"
+                component={DetailPelamar_Lamaran}
+              />
+              <Route
+                path="/LaporanHrd_StatusRekrutmen"
+                component={LaporanHrd_StatusRekrutmen}
               />
             </Switch>
           </div>
