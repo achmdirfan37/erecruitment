@@ -35,79 +35,55 @@ class DashboardPenilaian_LamaranKerjaDetailStaff extends React.Component {
   render() {
     return (
       <div className="content-wrapper">
-        {/* Content Header (Page header) */}
-        <section className="content-header">
-          <h1>
-            Job Application Data
-              </h1>
-          <ol className="breadcrumb">
-            <li className="active">Job Application Data</li>
-          </ol>
-        </section>
 
-        {/* Main content */}
         <section className="content">
-          <div className="row">
-            <div className="col-xs-12">
-              <div className="box">
-                {/* /.box-header */}
-                <div className="box-body">
-                  <br />
-                  <table id="example1" className="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Tahapan Wawancara</th>
-                        <th>Tanggal</th>
-                        <th>Tujuan</th>
-                        <th>Penampilan dan Sikap</th>
-                        <th>Pengetahuan dan Penguasaan Bidang Pekerjaan</th>
-                        <th>Percaya Diri</th>
-                        <th>Motivasi dan Ambisi</th>
-                        <th>Inisiatif dan Kreatifitas</th>
-                        <th>Kerjasama</th>
-                        <th>Komunikasi</th>
-                        <th>Kekuatan</th>
-                        <th>Kelemahan</th>
-                        <th>Kesimpulan</th>
-                        <th>Total Nilai</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        this.state.tr_penilaian_lamaran !== undefined
-                          ? this.state.tr_penilaian_lamaran.map(tr_penilaian_lamarans => (
-                            <tr key={tr_penilaian_lamarans.id}>
-                              <td>{tr_penilaian_lamarans.id}</td>
-                              <td>{tr_penilaian_lamarans.pn_tahapan_wawancara}</td>
-                              <td>{tr_penilaian_lamarans.pn_tanggal}</td>
-                              <td>{tr_penilaian_lamarans.pn_tujuan}</td>
-                              <td>{tr_penilaian_lamarans.pn_penampilan_sikap}</td>
-                              <td>{tr_penilaian_lamarans.pn_pengetahuan_penguasaan}</td>
-                              <td>{tr_penilaian_lamarans.pn_percaya_diri}</td>
-                              <td>{tr_penilaian_lamarans.pn_motivasi_ambisi}</td>
-                              <td>{tr_penilaian_lamarans.pn_inisiatif_kreatifitas}</td>
-                              <td>{tr_penilaian_lamarans.pn_kerjasama}</td>
-                              <td>{tr_penilaian_lamarans.pn_komunikasi}</td>
-                              <td>{tr_penilaian_lamarans.pn_kekuatan}</td>
-                              <td>{tr_penilaian_lamarans.pn_kelemahan}</td>
-                              <td>{tr_penilaian_lamarans.pn_kesimpulan}</td>
-                              <td>{tr_penilaian_lamarans.pn_total_nilai}</td>
-                            </tr>
-                          ))
-                          :
-                          null
-                      }
-                    </tbody>
-                  </table>
+
+          <div class="row">
+            {this.state.tr_penilaian_lamaran !== undefined
+              ? this.state.tr_penilaian_lamaran.map((tr_penilaian_lamarans) => (
+                <div class="col-md-6">
+                  <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <i class="fa fa-text-width"></i>
+                      <h3 class="box-title">Data Pelamar</h3>
+                    </div>
+                    <div class="box-body">
+                      <dl class="dl-horizontal">
+                        <dt>Tahapan Wawancara</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tahapan_wawancara}</dd>
+                        <dt>Tanggal</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tanggal}</dd>
+                        <dt>Tujuan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tujuan}</dd>
+                        <dt>Penampilan dan Sikap</dt>
+                        <dd>{tr_penilaian_lamarans.pn_penampilan_sikap}</dd>
+                        <dt>Pengetahuan dan Penguasaan Bidang Pekerjaan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_pengetahuan_penguasaan}</dd>
+                        <dt>Percaya Diri</dt>
+                        <dd>{tr_penilaian_lamarans.pn_percaya_diri}</dd>
+                        <dt>Motivasi dan Ambisi</dt>
+                        <dd>{tr_penilaian_lamarans.pn_motivasi_ambisi}</dd>
+                        <dt>Inisiatif dan Kreatifitas</dt>
+                        <dd>{tr_penilaian_lamarans.pn_inisiatif_kreatifitas}</dd>
+                        <dt>Kerjasama</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kerjasama}</dd>
+                        <dt>Komunikasi</dt>
+                        <dd>{tr_penilaian_lamarans.pn_komunikasi}</dd>
+                        <dt>Kekuatan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kekuatan}</dd>
+                        <dt>Kelemahan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kelemahan}</dd>
+                        <dt>Kesimpulan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kesimpulan}</dd>
+                        <dt>Total Nilai</dt>
+                        <dd>{tr_penilaian_lamarans.pn_total_nilai}</dd>
+                      </dl>
+                    </div>
+                  </div>
                 </div>
-                {/* /.box-body */}
-              </div>
-              {/* /.box */}
-            </div>
-            {/* /.col */}
+              ))
+              : null}
           </div>
-          {/* /.row */}
         </section>
         {/* /.content */}
       </div>

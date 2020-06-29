@@ -47,65 +47,52 @@ class DashboardPenilaian_LamaranKerjaDetailSectionHead extends React.Component {
 
         {/* Main content */}
         <section className="content">
-          <div className="row">
-            <div className="col-xs-12">
-              <div className="box">
-                {/* /.box-header */}
-                <div className="box-body">
-                  <br />
-                  <table id="example1" className="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Tahapan Wawancara</th>
-                        <th>Tanggal</th>
-                        <th>Tujuan</th>
-                        <th>Interpersonal Skill</th>
-                        <th>Analysis Judgment</th>
-                        <th>Planning and Driving Action</th>
-                        <th>Leading and Motivating</th>
-                        <th>Team Work</th>
-                        <th>Drive Courage</th>
-                        <th>Kekuatan</th>
-                        <th>Kelemahan</th>
-                        <th>Kesimpulan</th>
-                        <th>Total Nilai</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        this.state.tr_penilaian_lamaran !== undefined
-                          ? this.state.tr_penilaian_lamaran.map(tr_penilaian_lamarans => (
-                            <tr key={tr_penilaian_lamarans.id}>
-                              <td>{tr_penilaian_lamarans.id}</td>
-                              <td>{tr_penilaian_lamarans.pn_tahapan_wawancara}</td>
-                              <td>{tr_penilaian_lamarans.pn_tanggal}</td>
-                              <td>{tr_penilaian_lamarans.pn_tujuan}</td>
-                              <td>{tr_penilaian_lamarans.pn_interpersonal_skill}</td>
-                              <td>{tr_penilaian_lamarans.pn_analysis_judgment}</td>
-                              <td>{tr_penilaian_lamarans.pn_planning_driving_action}</td>
-                              <td>{tr_penilaian_lamarans.pn_leading_motivating}</td>
-                              <td>{tr_penilaian_lamarans.pn_team_work}</td>
-                              <td>{tr_penilaian_lamarans.pn_drive_courage}</td>
-                              <td>{tr_penilaian_lamarans.pn_kekuatan}</td>
-                              <td>{tr_penilaian_lamarans.pn_kelemahan}</td>
-                              <td>{tr_penilaian_lamarans.pn_kesimpulan}</td>
-                              <td>{tr_penilaian_lamarans.pn_total_nilai}</td>
-                            </tr>
-                          ))
-                          :
-                          null
-                      }
-                    </tbody>
-                  </table>
+          
+          <div class="row">
+            {this.state.tr_penilaian_lamaran !== undefined
+              ? this.state.tr_penilaian_lamaran.map((tr_penilaian_lamarans) => (
+                <div class="col-md-6">
+                  <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <i class="fa fa-text-width"></i>
+                      <h3 class="box-title">Data Pelamar</h3>
+                    </div>
+                    <div class="box-body">
+                      <dl class="dl-horizontal">
+                        <dt>Tahapan Wawancara</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tahapan_wawancara}</dd>
+                        <dt>Tanggal</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tanggal}</dd>
+                        <dt>Tujuan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_tujuan}</dd>
+                        <dt>Interpersonal Skill</dt>
+                        <dd>{tr_penilaian_lamarans.pn_interpersonal_skill}</dd>
+                        <dt>Analysis Judgment</dt>
+                        <dd>{tr_penilaian_lamarans.pn_analysis_judgment}</dd>
+                        <dt>Planning and Driving Action</dt>
+                        <dd>{tr_penilaian_lamarans.pn_planning_driving_action}</dd>
+                        <dt>Leading and Motivating</dt>
+                        <dd>{tr_penilaian_lamarans.pn_leading_motivating}</dd>
+                        <dt>Team Work</dt>
+                        <dd>{tr_penilaian_lamarans.pn_team_work}</dd>
+                        <dt>Drive Courage</dt>
+                        <dd>{tr_penilaian_lamarans.pn_drive_courage}</dd>
+                        <dt>Kekuatan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kekuatan}</dd>
+                        <dt>Kelemahan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kelemahan}</dd>
+                        <dt>Kesimpulan</dt>
+                        <dd>{tr_penilaian_lamarans.pn_kesimpulan}</dd>
+                        <dt>Total Nilai</dt>
+                        <dd>{tr_penilaian_lamarans.pn_total_nilai}</dd>
+                      </dl>
+                    </div>
+                  </div>
                 </div>
-                {/* /.box-body */}
-              </div>
-              {/* /.box */}
-            </div>
-            {/* /.col */}
+              ))
+              : null}
           </div>
-          {/* /.row */}
+
         </section>
         {/* /.content */}
       </div>

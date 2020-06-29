@@ -28,6 +28,7 @@ class TemplateEdit extends Component {
       .then((response) => {
         this.setState({
           temp_content: response.data.temp_content,
+          editorState: getHtml(response.data.temp_content),
         });
       })
       .catch((err) => console.log(err));
@@ -63,7 +64,7 @@ class TemplateEdit extends Component {
   }
 
   render() {
-    const { editorState } = this.state;
+    const { editorState } = this.state.editorState;
     return (
       <div className="content-wrapper">
         {/* Content Header (Page header) */}

@@ -81,10 +81,10 @@ class RiwayatPendidikanList extends React.Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>
-          Education Background Data
+          Data Riwayat Pendidikan
               </h1>
           <ol className="breadcrumb">
-            <li className="active">Education Background Data</li>
+            <li className="active">Data Riwayat Pendidikan</li>
           </ol>
         </section>
 
@@ -106,7 +106,7 @@ class RiwayatPendidikanList extends React.Component {
                     }}
                     style={{ marginRight: 8 }} />
 
-                  <button onClick={this.cari}>Search Educational Background Data</button>
+                  <button onClick={this.cari}>Cari Data</button>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -115,18 +115,18 @@ class RiwayatPendidikanList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to={"/RiwayatPendidikanCreate"} className="btn btn-warning btn-sm mr-2">Add Educational Background Data</Link>
+                  <Link to={"/RiwayatPendidikanCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Riwayat Pendidikan</Link>
                   <br />
                   <table id="example1" className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Name of Educational Institution</th>
-                        <th>Graduation Year</th>
-                        <th>Educational Stage</th>
-                        <th>Location</th>
-                        <th>Majors</th>
-                        <th>Action</th>
+                        <th>Lembaga Pendidikan</th>
+                        <th>Tahun Lulus</th>
+                        <th>Jenjang Pendidikan</th>
+                        <th>Lokasi</th>
+                        <th>Jurusan</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -141,8 +141,8 @@ class RiwayatPendidikanList extends React.Component {
                               <td>{ms_riwayat_pendidikans.rpd_lokasi}</td>
                               <td>{ms_riwayat_pendidikans.rpd_jurusan}</td>
                               <td>
-                                <Link to={`/${ms_riwayat_pendidikans.id}/RiwayatPendidikanEdit`} className="btn btn-warning btn-sm mr-2">Update</Link>
-                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteRiwayatPendidikan.bind(this, ms_riwayat_pendidikans.id)}>Delete</Link>
+                                <Link to={`/${ms_riwayat_pendidikans.id}/RiwayatPendidikanEdit`} className="btn btn-warning btn-sm mr-2">Ubah</Link>
+                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteRiwayatPendidikan.bind(this, ms_riwayat_pendidikans.id)}>Hapus</Link>
                               </td>
                             </tr>
                           ))

@@ -48,7 +48,7 @@ export default class MenuPewawancara extends Component {
                 </div>
                 <div className="pull-left info">
                   <p>Salshabilla Herdianti</p>
-                  <h6>- HRD -</h6>
+                  <h6>- Pewawancara -</h6>
                 </div>
               </div>
               {/* search form */}
@@ -96,7 +96,7 @@ export default class MenuPewawancara extends Component {
                     <Link to={"/login_pewawancara"} className="fa fa-user">
                       {" "}
                     </Link>{" "}
-                    <span>Log Out</span>
+                    <span>Keluar</span>
                   </a>
                 </li>
               </ul>

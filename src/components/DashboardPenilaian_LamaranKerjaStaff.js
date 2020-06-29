@@ -22,7 +22,7 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
 
   componentDidMount() {
     // ajax call
-    const id = 20;
+    const id = 1;
     axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraStaff/${id}`)
       .then(response => {
         this.setState({
@@ -35,7 +35,7 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
   }
 
   handlePageChange(pageNumber) {
-    const id = 20;
+    const id = 1;
     console.log(`active page is ${pageNumber}`);
     axios.get(`http://127.0.0.1:8000/api/tr_lamaran_kerja/showLamaranPewawancaraStaff/${id}?page=` + pageNumber)
       .then(response => {
@@ -51,77 +51,48 @@ class DashboardPenilaian_LamaranKerjaStaff extends React.Component {
   render() {
     return (
       <div className="content-wrapper">
-        {/* Content Header (Page header) */}
-        <section className="content-header">
-          <h1>
-            Job Application Data
-              </h1>
-          <ol className="breadcrumb">
-            <li className="active">Job Application Data</li>
-          </ol>
-        </section>
-
-        {/* Main content */}
         <section className="content">
-          <div className="row">
-            <div className="col-xs-12">
-              <div className="box">
-                {/* /.box-header */}
-                <div className="box-body">
-                  <br />
-                  <table id="example1" className="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Pelamar</th>
-                        <th>Judul Lowongan</th>
-                        <th>Posisi</th>
-                        <th>Status Recruitment</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        this.state.tr_lamaran_kerja !== undefined
-                          ? this.state.tr_lamaran_kerja.map(tr_lamaran_kerjas => (
-                            <tr key={tr_lamaran_kerjas.id}>
-                              <td>{tr_lamaran_kerjas.id}</td>
-                              <td>{tr_lamaran_kerjas.pel_nama_lengkap}</td>
-                              <td>{tr_lamaran_kerjas.low_judul}</td>
-                              <td>{tr_lamaran_kerjas.pos_nama}</td>
-                              <td>{tr_lamaran_kerjas.lk_status_rekrutmen}</td>
-                              <td>
-                                <Link
-                                  to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_PelamarStaff`}
-                                  className="btn btn-warning btn-sm mr-2">Penilaian Gol 1,2,3 (Staff)</Link>
-                                <Link to={`/${tr_lamaran_kerjas.lk_pelamar}/DetailPelamar_Lamaran`} className="btn btn-warning btn-sm mr-2">Lihat Detail</Link>
-                              </td>
-                            </tr>
-                          ))
-                          :
-                          null
-                      }
-                    </tbody>
-                  </table>
-                  <div class="center">
-                    <Pagination
-                      activePage={this.state.activePage}
-                      itemsCountPerPage={this.state.itemsCountPerPage}
-                      totalItemsCount={this.state.totalItemsCount}
-                      pageRangeDisplayed={this.state.pageRangeDisplayed}
-                      onChange={this.handlePageChange}
-                      itemClass='page-item'
-                      linkClass='page-link'
-                    />
+
+          <div class="row">
+            {this.state.tr_lamaran_kerja !== undefined
+              ? this.state.tr_lamaran_kerja.map((tr_lamaran_kerjas) => (
+
+                <div class="col-md-6">
+                  <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <i class="fa fa-text-width"></i>
+
+                      <h3 class="box-title">Data Pelamar</h3>
+                    </div>
+                    <div class="box-body">
+                      <dl class="dl-horizontal">
+                        <dt>Nama Pelamar</dt>
+                        <dd>{tr_lamaran_kerjas.pel_nama_lengkap}</dd>
+                        <dt>Judul Lowongan</dt>
+                        <dd>{tr_lamaran_kerjas.low_judul}</dd>
+                        <dt>Posisi</dt>
+                        <dd>{tr_lamaran_kerjas.pos_nama}</dd>
+                        <dt>Status Rekrutmen</dt>
+                        <dd>{tr_lamaran_kerjas.lk_status_rekrutmen}</dd>
+                      </dl>
+                    </div>
+                    <div class="box-footer" align="right">
+                      <div class="marginRight">
+                        <div class="btn-group" align="right">
+                          <Link
+                            to={`/${tr_lamaran_kerjas.id}/DashboardPenilaian_PelamarStaff`}
+                            className="btn btn-warning btn-sm mr-2">Penilaian Gol 1,2,3 (Staff)</Link>
+                          <Link to={`/${tr_lamaran_kerjas.lk_pelamar}/DetailPelamar_Lamaran`} className="btn btn-warning btn-sm mr-2">Lihat Detail</Link>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                {/* /.box-body */}
-              </div>
-              {/* /.box */}
-            </div>
-            {/* /.col */}
+
+              ))
+              : null}
           </div>
-          {/* /.row */}
+        
         </section>
         {/* /.content */}
       </div>

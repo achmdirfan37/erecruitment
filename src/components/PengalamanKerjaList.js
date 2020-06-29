@@ -85,10 +85,10 @@ class PengalamanKerjaList extends React.Component {
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>
-          Work Experience Data
+          Data Pengalaman Kerja
               </h1>
           <ol className="breadcrumb">
-            <li className="active">Work Experience Data</li>
+            <li className="active">Data Pengalaman Kerja</li>
           </ol>
         </section>
 
@@ -110,7 +110,7 @@ class PengalamanKerjaList extends React.Component {
                     }}
                     style={{ marginRight: 8 }} />
 
-                  <button onClick={this.cari}>Search for Work Experience</button>
+                  <button onClick={this.cari}>Cari Data</button>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -119,18 +119,18 @@ class PengalamanKerjaList extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to={"/PengalamanKerjaCreate"} className="btn btn-warning btn-sm mr-2">Add Work Experience Data</Link>
+                  <Link to={"/PengalamanKerjaCreate"} className="btn btn-warning btn-sm mr-2">Tambah Data Pengalaman Kerja</Link>
                   <br />
                   <table id="example1" className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Company Name</th>
-                        <th>Start Year of Work</th>
-                        <th>Finish Year of Work</th>
-                        <th>Location</th>
-                        <th>Industry</th>
-                        <th>Action</th>
+                        <th>Perusahaan</th>
+                        <th>Tahun Mulai Bekerja</th>
+                        <th>Tahun Selesai Bekerja</th>
+                        <th>Lokasi</th>
+                        <th>Industri</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -146,8 +146,8 @@ class PengalamanKerjaList extends React.Component {
                               <td>{ms_pengalaman_kerjas.pkj_industri}</td>
                               <td>
                                 <Link to={`/${ms_pengalaman_kerjas.id}/PengalamanKerjaEdit`}
-                                  className="btn btn-warning btn-sm mr-2">Update</Link>
-                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteRiwayatPendidikan.bind(this, ms_pengalaman_kerjas.id)}>Delete</Link>
+                                  className="btn btn-warning btn-sm mr-2">Ubah</Link>
+                                <Link href="fake-url" className="btn btn-warning btn-sm mr-2" onClick={this.deleteRiwayatPendidikan.bind(this, ms_pengalaman_kerjas.id)}>Hapus</Link>
                               </td>
                             </tr>
                           ))
